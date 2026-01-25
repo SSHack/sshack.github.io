@@ -48,7 +48,7 @@ L'analyse révèle également des préoccupations quant à la collecte de donné
 > "Read out and transmit system files. The Android app collects and transmits data on the CPU of the end device to a TEMU backend. While accessing CPU performance data may have legitimate purposes, such as optimizing the application's performance based on the user's device capabilities, obtaining the SoC serial number raises potential privacy concerns. This unique identifier could be used to track users who are not logged in, when an Advertising ID is unavailable, or as an alternative method of user identification."
 
 Des indices dans les bibliothèques natives suggèrent l'accès à des informations telles que le nombre de coeurs du CPU, la fréquence d'horloge et le numéro de série du SoC (System on Chip) :
-```Java
+```java
 String cpuPaths[] = {
     "/proc/cpuinfo",
     "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq",
