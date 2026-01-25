@@ -14,7 +14,7 @@ Une solution existe, réinstaller le système d’exploitation de base. Cette so
 
 Pour se faire, il est nécessaire d’avoir une machine qui tourne sous Windows (éviter les machines virtuelles ce qui pourrait engendrer des problèmes de pilotes).
 
-Il faut en premier lieu installer les pilotes des smartphones LG disponible [sur cette page](http://www.lg.com/us/support/product-help/CT10000025-20150179827560-downloaded-apps).
+Il faut en premier lieu installer les pilotes des smartphones LG disponible [sur cette page](https://www.lg.com/us/support/product-help/CT10000025-20150179827560-downloaded-apps).
 
 Il faudra également installer le logiciel **LGUP de LG** en version 1.14 (à l’heure où j’écris cet article) qui permet de mettre à jour ou réinitialiser le système d’exploitation du smartphone. Le logiciel est disponible [sur cette page](https://forum.xda-developers.com/lg-g5/development/uppercut-lgup-loader-g5-variants-t3511295)
 
