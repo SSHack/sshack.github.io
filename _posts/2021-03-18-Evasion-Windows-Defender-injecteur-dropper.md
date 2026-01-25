@@ -4,7 +4,7 @@ layout: post
 title: "Evasion de Windows Defender grâce à un injecteur (dropper)"
 description: "Cet article décrit comment rendre indétectable n'importe quel malware auprès de Windows Defender."
 lang: fr_FR
-categories: [CYBERSECURITY, RED TEAM]
+categories: [CYBERSÉCURITÉ, RED TEAM]
 tags: [windows defender, evasion, injector, dropper, malware, av bypass, shellcode, red teaming, obfuscation, cybersécurité, bypassing antivirus, injection de code]
 ---
 ![Evasion de Windows Defender grâce à un injecteur (dropper)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/illustration.PNG)

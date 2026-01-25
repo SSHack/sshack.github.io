@@ -4,7 +4,7 @@ layout: post
 title: "Bug Bounty : De hacker à phisher"
 description: "Cet article décrit comment une injection de caractères permet de créer un scénario de phishing dans le cadre d'un BugBounty"
 lang: fr_FR
-categories: [CYBERSECURITY, BUG BOUNTY]
+categories: [CYBERSÉCURITÉ, BUG BOUNTY]
 tags: [bug bounty, hacker, yeswehack, bug hunting, hacking éthique, vulnérabilité, sécurité web, reconnaissance, plateforme, cybersécurité]
 ---
 ![Bug Bounty : De hacker à phisher](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/illustration.jpg)

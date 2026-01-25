@@ -4,7 +4,7 @@ layout: post
 title: "Créer une infrastructure de phishing gratuitement avec Amazon Web Service et Gophish"
 description: "Cet article décrit comment créer une infrastructure pour une opération de phishing souvent utilisée dans une opération RedTeam ou APT."
 lang: fr_FR
-categories: [CYBERSECURITY, RED TEAM]
+categories: [CYBERSÉCURITÉ, RED TEAM]
 tags: [phishing, infrastructure, red team, ingénierie sociale, gophish, cybersécurité, sécurité offensive, campagne de phishing, social engineering, simulation d'attaque]
 ---
 ![Créer une infrastructure de phishing gratuitement avec Amazon Web Service et Gophish](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/illustration.jpg)
