@@ -6,7 +6,7 @@ description: "Cet article présente le challenge Spying Challenge qui s'est dér
 lang: fr_FR
 category: CTF
 ---
-![Spying Challenge 2019](/assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/illustration.png)
+![Spying Challenge 2019](assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/illustration.png)
 
 J’ai eu la chance de participer à l’évènement [leHack 2019](https://lehack.org/fr), nouveau nom de La Nuit du Hack. Nous nous sommes lancés avec mon association [Hack In Provence](https://www.hackinprovence.fr/) dans le [Spying Challenge 2019](https://spyingchallenge.com/). Cette compétition a pour but de mettre à l’épreuve vos talents en matière d'**OSINT (renseignement d'origine sources ouvertes)**, **hack**, **tracking**, **social engineering**, **Lockpicking** (crochetage de serrure) et **intrusion physique**. Une panoplie de compétences passionnantes à développer histoire de se prendre pour James Bond le temps du challenge.
 
@@ -73,7 +73,7 @@ Très vite, nous avons compris que Lictor propose clairement des services illég
 ## Social engineering le réseau de Gustave Leproleau
 Nous avons donc cherché des informations sur ce fameux Gustave Leproleau et son mouvement les bérets jaunes. Des vidéos ont été postées sur YouTube, des posts sur des forums ont été fait. En analysant les vidéos, les commentaires… Nous avons recrée le réseau des bérets tout court. Nous avons ainsi pu voir que des fans du mouvement aident à la prolifération du réseau en créant des pages Facebook… Pour cartographier le réseau, nous avons utilisé l’outil Maltego :
 
-[![Cartographie du réseau avec Maltego](/assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/cartographie-du-reseau-avec-Maltego.png)](/assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/cartographie-du-reseau-avec-Maltego.png)
+[![Cartographie du réseau avec Maltego](assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/cartographie-du-reseau-avec-Maltego.png)](assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/cartographie-du-reseau-avec-Maltego.png)
 Nous sommes rentrés en contact avec plusieurs des partisans en leur faisant croire que nous serions intéressés par rejoindre le mouvement. Nous avons obtenus parfois des réponses négatives mais aussi des réponses positives. Nous avons appris que Paul Etik membre déjà connu sur notre cartographie était passé Lieutenant et nous a proposé de rejoindre le réseau.
 
 ## Conclusion

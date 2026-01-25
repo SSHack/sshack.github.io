@@ -6,7 +6,7 @@ description: "Cet article présente les principales requêtes Google Dorks pour 
 lang: fr_FR
 category: Google Dorks
 ---
-![Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/illustration.jpg)
+![Google Dorks](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/illustration.jpg)
 
 J’aimerais parler des Google Dorks. Rien qui ne soit pas déjà connu, mais j’en avais vaguement parlé sur l’article du [Spying Challenge](https://clement-bouder.fr/blog/ctf/2019/07/13/Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge.html).
 
@@ -36,7 +36,7 @@ Maintenant que les bases sont posées, seule l’imagination (et le contenu réf
 ## Utilisation des Dorks pour de l’usurpation d’identité
 On peut s’en servir tout d’abord pour trouver des documents d’identité par exemple sur des sites hébergeant des fichiers PDF. Dans le cas présent, les utilisateurs ont explicitement autorisé le site à héberger le document de manière publique et donc à être indexé :
 `site:www.fichier-pdf.fr filetype:pdf intext:IBAN FR76`
-[![Vol de RIB via des Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-iban.jpg)](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-iban.jpg)
+[![Vol de RIB via des Google Dorks](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-iban.jpg)](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-iban.jpg)
 Il ne reste qu’à l’usurpateur de choisir sa banque ou de spécifier carrément une certaine banque comme la Caisse d’Épargne (elle ou une autre, peu importe) et choisir son identité, particulier ou entreprise, il y a le choix :
 ```
 site:www.fichier-pdf.fr intext:IBAN FR76*caisse*
@@ -47,7 +47,7 @@ Ce n’est qu’un RIB me dirait vous, il nous manque des relevés de comptes et
 site:www.fichier-pdf.fr intext:*caisse*relevé*`
 ```
 
-[![Vol de relevé bancaire via des Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-carte-identite.jpg)](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-carte-identite.jpg)
+[![Vol de relevé bancaire via des Google Dorks](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-carte-identite.jpg)](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-carte-identite.jpg)
 
 Je n’ai pas pris le temps de vérifier si les relevés et les RIB sont liés mais il n’est pas difficile en croisant les données de modifier les fichiers afin de constituer une véritable identité. D’ailleurs, ça serait « cool » d’avoir une carte vitale ou identité :
 
@@ -55,7 +55,7 @@ Je n’ai pas pris le temps de vérifier si les relevés et les RIB sont liés m
 site:www.fichier-pdf.fr intext:*identite*
 site:www.fichier-pdf.fr intext:*vitale*
 ```
-[![Vol de carte d’identité via des Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-releves-bancaire.jpg)](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-releves-bancaire.jpg)
+[![Vol de carte d’identité via des Google Dorks](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-releves-bancaire.jpg)](assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-releves-bancaire.jpg)
 
 Bien sûr, il faudra quelques coups de Photoshop ou GIMP mais rien de bien compliqué. Je me suis arrêté au seuls résultats du site www.fichier-pdf.fr (que j’ai contacté pour signaler les fichiers), je vous laisse imaginer si j’avais cherché sur le web entier. Voilà comment en quelques minutes une personne qui à simplement envoyé en deux clics ses documents se retrouve piégée pour de longues années à essayer de prouver qu’elle n’a jamais contracté ce crédit, acheté cet article sur le Darkweb ou n’importe quoi d’autre. [Cet article du journal Le Parisien](http://www.leparisien.fr/faits-divers/vol-de-permis-de-conduire-je-vis-un-cauchemar-02-11-2019-8185152.php) en parle très bien. Le problème d’usurpation d’identité est long à traiter comme le rapporte [cet autre article](http://www.leparisien.fr/faits-divers/permis-de-conduire-cette-arnaque-qui-vous-fait-payer-la-contravention-d-un-autre-02-11-2019-8185149.php). Malheureusement, il arrive aussi que des fichiers contenant des données médicales soient en ligne par exemple.
 

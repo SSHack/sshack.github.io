@@ -6,7 +6,7 @@ description: "Cet article décrit comment rendre indétectable n'importe quel ma
 lang: fr_FR
 category: redteam,malware,raccourci,dropper,injecteur,evasion
 ---
-![Evasion de Windows Defender grâce à un injecteur (dropper)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/illustration.PNG)
+![Evasion de Windows Defender grâce à un injecteur (dropper)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/illustration.PNG)
 
 Un injecteur (ou *dropper*, en anglais), est un programme créé pour installer un logiciel malveillant sur un système cible.
 Il s'agit d'une forme minimaliste de cheval de Troie. Le code du logiciel malveillant est soit inclus à même l'injecteur, soit téléchargé sur la machine à partir d'Internet une fois activé.
@@ -22,7 +22,7 @@ Pour l'exemple, j'utiliserai l'outil d'administration à distance (*Remote Admin
 
 Le taux de détection original est le suivant :
 
-[![Taux de détection du malware Quasar](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_malware.PNG)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_malware.PNG)
+[![Taux de détection du malware Quasar](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_malware.PNG)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_malware.PNG)
 
 Attention, lors de la création d'un malware ou injecteur (*dropper*), il **ne doit jamais** être scanné sur les plateformes telles que [VirusTotal](https://www.virustotal.com/gui/) car les échantillons sont distribués aux **éditeurs antivirus**.
 Les plateformes dites sans distribution (*no distribute*) telles que [AntiScanMe](https://antiscan.me/) sont à privilégier. Il serait bête de griller votre cartouche avant même de commencer votre audit Red Team :)
@@ -52,27 +52,27 @@ Le fichier manifest doit aussi être modifié via les paramètres du projet afin
 
 Le taux de détection de l'injecteur est le suivant :
 
-[![Taux de détection de l'injecteur (dropper)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_dropper.PNG)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_dropper.PNG)
+[![Taux de détection de l'injecteur (dropper)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_dropper.PNG)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/scan_dropper.PNG)
 
 La non détection de l'injecteur par Windows Defender est le seul élément qui est vraiment intéressant car l'injecteur sert uniquement à évader ce dernier.
 
 Une fois l'injecteur envoyé à la victime, l'exclusion est correctement ajoutée et le malware pourtant initialement détecté par Windows Defender est exécuté. La victime apparaît alors du côté de l'attaquant :
 
-[![Taux de détection de l'injecteur (dropper)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/Quasar.PNG)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/Quasar.PNG)
+[![Taux de détection de l'injecteur (dropper)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/Quasar.PNG)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/Quasar.PNG)
 
 L'attaquant dispose alors de toutes les fonctionnalités du malware installé. Dans le cas présent, il est possible d'avoir un enregistreur de frappes (*keylogger*) :
 
-[![Enregistreur de frappes (keylogger)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/keylogger.PNG)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/keylogger.PNG)
+[![Enregistreur de frappes (keylogger)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/keylogger.PNG)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/keylogger.PNG)
 
 Il est également possible d'envoyer des messages à la victime :
 
-[![Message box Quasar](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/message_box.PNG)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/message_box.PNG)
+[![Message box Quasar](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/message_box.PNG)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/message_box.PNG)
 
 D'autres fonctionnalités sont disponibles et dépendent du logiciel malveillant installé, un ransomware aurait également pu être installé...
 
 Si la vicitme se rend dans les paramètres, elle pourra voir l'exclusion ajoutée par l'injecteur :
 
-[![Exclusion Windows Defender ajoutée par l'injecteur](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/exclusion.PNG)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/exclusion.PNG)
+[![Exclusion Windows Defender ajoutée par l'injecteur](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/exclusion.PNG)](assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/exclusion.PNG)
 
 ## Comment s'en protéger
 Etant donné que cette technique nécessite les droits d'administration de la part de la victime, il convient de limiter au maximum la liste des comptes ayant le droit d'exécuter des programmes en tant qu'administrateur.

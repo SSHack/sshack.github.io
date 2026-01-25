@@ -6,7 +6,7 @@ description: "Cet article présente comment créer un dossier de partage en rés
 lang: fr_FR
 category: NFS
 ---
-![Linux NFS](/assets/images/2017-11-11-Creer-un-partage-nfs-sous-linux/illustration.png)
+![Linux NFS](assets/images/2017-11-11-Creer-un-partage-nfs-sous-linux/illustration.png)
 
 Il faut tout d’abord comprendre que pour créer un partage NFS (Network File System) sous Linux Ubuntu, il faut un serveur et un ou plusieurs clients. Notre serveur servira à gérer les clients qui se connectent à ce dernier. Il contient un dossier partagé et un fichier de configuration. Les clients qui se connectent au serveur auront accès en lecture aux fichiers contenu dans le dossier du serveur. Il pourront aussi selon la configuration que vous lui indiquez écrire dans ce dossier. Veuillez noter que cet article est écrit grâce à la documentation officielle que je vous conseille fortement de lire : https://help.ubuntu.com/community/SettingUpNFSHowTo.
 

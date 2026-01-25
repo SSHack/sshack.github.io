@@ -6,7 +6,7 @@ description: "Cet article basé sur l'analyse technique de ntc.swiss décrit les
 lang: fr_FR
 category: temu,malware,cybersecurité,données personnelles
 ---
-![Temu : Derrière l'offre alléchante, se cache un malware](/assets/images/2026-01-15-Temu-derriere-le-rideau-des-offres-allechantes-une-analyse-technique-de-la-collecte-de-donnees/temu-malware.png)
+![Temu : Derrière l'offre alléchante, se cache un malware](assets/images/2026-01-15-Temu-derriere-le-rideau-des-offres-allechantes-une-analyse-technique-de-la-collecte-de-donnees/temu-malware.png)
 
 Dans l'écosystème mobile actuel, les applications de commerce électronique promettent commodité et économies. Cependant, une vigilance accrue est de mise, particulièrement lorsqu'il s'agit d'applications populaires comme **Temu**. Une analyse technique approfondie, menée par [NTC (National Cyber Security Centre)](https://www.ntc.swiss/hubfs/temu-security-analysis-ntc-en.pdf), révèle des pratiques de collecte et de transmission de données qui méritent une attention particulière de la part des professionnels de la cybersécurité et des pentester. Cet article se propose de décortiquer les mécanismes techniques impliqués, en mettant l'accent sur les implications en matière de sécurité et de vie privée.
 
@@ -158,7 +158,7 @@ La capacité à géolocaliser un utilisateur présente un **intérêt gouverneme
 
 ## Mécanisme de modification du DNS
 Une autre constatation technique pertinente concerne la manière dont Temu gère le trafic réseau, en particulier la résolution des noms de domaine. L'analyse révèle que l'application intègre un mécanisme optionnel permettant le recours à un serveur DNS personnalisé :
-![DNS personnalisé](/assets/images/2026-01-15-Temu-derriere-le-rideau-des-offres-allechantes-une-analyse-technique-de-la-collecte-de-donnees/requete-dns.png)
+![DNS personnalisé](assets/images/2026-01-15-Temu-derriere-le-rideau-des-offres-allechantes-une-analyse-technique-de-la-collecte-de-donnees/requete-dns.png)
 
 Ce mécanisme pourrait permettre de contourner les bloqueurs de publicité qui se basent sur les requêtes DNS.
 Par ailleurs, les métadonnées des requêtes constituent une source d'information complémentaire pour cerner l'activité de l'utilisateur, y compris ses schémas d'horaires.

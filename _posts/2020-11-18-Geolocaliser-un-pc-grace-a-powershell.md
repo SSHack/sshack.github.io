@@ -6,7 +6,7 @@ description: "Cet article décrit comment lors d'une opération de RedTeam ou AP
 lang: fr_FR
 category: OSINT,geolocalisation,powershell
 ---
-![Géolocaliser un PC grâce à PowerShell](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/illustration.jpg)
+![Géolocaliser un PC grâce à PowerShell](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/illustration.jpg)
 
 Lorsqu'un PC est compromis, il peut-être intéressant de connaître sa géolocalisation. Géolocaliser un équipement peut également être utile pour des challenges OSINT.
 
@@ -28,7 +28,7 @@ L'idée est donc de déclarer un `GeoWatcher` avec une précision de détection 
 $GeoWatcher = New-Object System.Device.Location.GeoCoordinateWatcher(1); $GeoWatcher.Start(); Start-Sleep -Milliseconds 3000; $GeoWatcher.Position.Location | Select Latitude,Longitude
 ```
 Le résultat de la commande est alors le suivant :
-[![Résultat de la commande PowerShell GeoCoordinateWatcher](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_geowatcher.jpg)](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_geowatcher.jpg)
+[![Résultat de la commande PowerShell GeoCoordinateWatcher](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_geowatcher.jpg)](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_geowatcher.jpg)
 
 Il est alors possible de coller les coordonnées directement dans Google Maps, par exemple en remplaçant la virgule par un point. Normalement, la localisation est assez précise. Dans mon cas, il y a une différence de 4 ou 5 mètres à vol d'oiseau.
 
@@ -42,7 +42,7 @@ Pour cela, il faut en premier lieu récupérer les bornes voisines via une comma
 netsh wlan show network mode=bssid | Select-String -Pattern BSSID
 ```
 Le résultat de la commande est alors le suivant :
-[![Résultat de la commande PowerShell netsh](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_netsh.jpg)](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_netsh.jpg)
+[![Résultat de la commande PowerShell netsh](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_netsh.jpg)](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_netsh.jpg)
 
 *PS : Par soucis de confiendialité, j'ai aussi modifié les résultats de la commande.*
 
@@ -53,7 +53,7 @@ Une requête PowerShell pour lister les noeuds peut ainsi être effectuée :
 Get-ChildItem -Path HKLM:\SYSTEM\ControlSet001\Services\DeviceAssociationService\State\Store\ | Select-String -Pattern Bluetooth
 ```
 Le résultat est alors le suivant :
-[![Résultat de la commande PowerShell registre](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_registre.jpg)](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_registre.jpg)
+[![Résultat de la commande PowerShell registre](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_registre.jpg)](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/resultat_commande_registre.jpg)
 
 La partie masquée en rouge représente l'adresse MAC de votre carte Bluetooth.
 La partie masquée en vert représente les adresses MAC des périphériques qui sont apparairés avec le PC cible.
@@ -65,4 +65,4 @@ Selon Wikipédia :
 >WIGLE (acronyme de Wireless Geographic Logging Engine) est un projet de géolocalisation collaboratif en ligne dont le but est de constituer une base de données libre sur les points d'accès Wi-Fi et les antennes-relais de téléphonie mobile dans le monde.
 
 Il suffit de se créer un compte gratuit pour pouvoir afficher le formulaire de recherche par BSSID ou SSID. Si un des BSSID ou SSID entré est référencé sur le site, la localisation du PC est alors connu. Il suffit de cliquer sur `map` et le point GPS apparaît...
-[![Résultat de la recherche Wigle](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/recherche_wigle.jpg)](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/recherche_wigle.jpg)
+[![Résultat de la recherche Wigle](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/recherche_wigle.jpg)](assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/recherche_wigle.jpg)

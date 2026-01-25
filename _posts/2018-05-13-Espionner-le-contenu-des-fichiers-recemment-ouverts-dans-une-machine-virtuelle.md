@@ -6,7 +6,7 @@ description: "Cet article présente comment extraire des informations sensibles 
 lang: fr_FR
 category: Machine Virtuelle
 ---
-![Flux de données : illustration](/assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/illustration.jpg)
+![Flux de données : illustration](assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/illustration.jpg)
 
 Bonjour,
 dans cet article j’aimerais partager avec vous une récente découverte que j’ai fait sur la fonctionnalité sauvegarder l’état, rien de bien transcendant mais ça peut être problématique selon certain cas.
@@ -22,11 +22,11 @@ Lorsque vous éteignez la machine en mode sauvegarde de l’état pour gagner du
 
 Il est ainsi possible de voire l'emplacement absolu du fichier texte directement en mémoire :
 
-[![Emplacement absolu du fichier texte](/assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/chemin-fichier-en-memoire.png)](/assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/chemin-fichier-en-memoire.png)
+[![Emplacement absolu du fichier texte](assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/chemin-fichier-en-memoire.png)](assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/chemin-fichier-en-memoire.png)
 
 Il en est de même pour le contenu en claire du fichier texte :
 
-[![Contenu en claire du fichier texte](/assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/contenu-fichier-en-memoire.png)](/assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/contenu-fichier-en-memoire.png)
+[![Contenu en claire du fichier texte](assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/contenu-fichier-en-memoire.png)](assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/contenu-fichier-en-memoire.png)
 
 Tout le contenu est disponible, cela pourrait être un code source. Ce qui veut dire qu’un attaquant en ayant un accès physique à la machine non déchiffrée pourrait explorer quelques fichiers, ça peut se faire aussi avec un accès distant en volant ce fichier. Je n’ai pas eu le temps de chercher mais je ne serais pas surpris de pouvoir récupérer le mot de passe de session de Ubuntu.
 

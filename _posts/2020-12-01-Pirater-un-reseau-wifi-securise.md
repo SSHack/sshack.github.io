@@ -6,7 +6,7 @@ description: "Cet article décrit comment pirater un réseau wifi qui est sécur
 lang: fr_FR
 category: phishing,wifi,hack,cracking,bruteforce
 ---
-![Pirater un réseau wifi sécurisé](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/illustration.jpg)
+![Pirater un réseau wifi sécurisé](assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/illustration.jpg)
 
 Cet article détaillera les méthodes et les outils nécessaires afin de tenter de **compromettre la sécurité d'un réseau wifi**. Quatre types d'attaques seront détaillées :
 1. Pirater un réseau wifi sécurisé par une clé WPA/WPA2 via une attaque par force brute (bruteforce)
@@ -286,7 +286,7 @@ Il est alors possible de filtrer par ville, protocole de sécurité et par date 
 - Date de dernière observation : Cette année (01/01/2020)
 - Protocole de sécuisation : WEP
 
-[![Recherche de réseaux wifi WEP vulnérables](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/recherche-reseaux-wifi-wep-vulnerables.jpg)](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/recherche-reseaux-wifi-wep-vulnerables.jpg)
+[![Recherche de réseaux wifi WEP vulnérables](assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/recherche-reseaux-wifi-wep-vulnerables.jpg)](assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/recherche-reseaux-wifi-wep-vulnerables.jpg)
 
 Il est possible de trouver des réseaux de particuliers ce qui est déjà embêtant. Cependant, pire : J'ai pû trouver des **réseaux wifi vulnérables de grandes entreprises** et là c'est beaucoup plus intéressant pour débuter une APT (menace persistante avancée, Advanced Persistent Threat en anglais) qui est une attaque ciblée sur une entreprise. En effet, ce réseau vulnérable pourrait servir de **porte d'entrée sur le système d'information**.
 
@@ -353,7 +353,7 @@ victims.
 
 L'option choisie ici est `Firmware Upgrade Page`. Le réseau est automatiquement cloné, les paquets de désauthentification sont automatiquement envoyés. Il n'y a qu'à attendre qu'une victime se connecte sur le réseau et entre le mot de passe sur la fausse page d'authentification :
 
-[![Recherche de réseaux wifi WEP vulnérables](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/page-authentification-wifi-phishing.png)](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/page-authentification-wifi-phishing.png)
+[![Recherche de réseaux wifi WEP vulnérables](assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/page-authentification-wifi-phishing.png)](assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/page-authentification-wifi-phishing.png)
 
 Voici le résulat lorsqu'une victime entre un mot de passe. Toutes les requêtes apparaissent en clair du côté de l'attaquant et le mot de passe aussi : `wfphshr-wpa-password=jetaime`:
 

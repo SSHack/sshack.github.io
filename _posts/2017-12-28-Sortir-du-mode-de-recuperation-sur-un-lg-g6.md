@@ -6,7 +6,7 @@ description: "Cet article présente comment sortir du mode de récupération du 
 lang: fr_FR
 category: Custom ROM
 ---
-![LG G6](/assets/images/2017-12-28-Sortir-du-mode-de-recuperation-sur-un-lg-g6/illustration.png)
+![LG G6](assets/images/2017-12-28-Sortir-du-mode-de-recuperation-sur-un-lg-g6/illustration.png)
 
 Il arrive parfois lors de l’installation d’une ROM personnalisée comme **Lineage OS** qu’un smartphone soit bloqué en mode récupération (Recovery Mode). Lors du démarrage, le téléphone démarre obligatoirement sur le **custom recovery TWRP** par exemple. Il est alors impossible d’en sortir même en réinstallant le système d’exploitation ou le custom recovery.
 

@@ -6,7 +6,7 @@ description: "Cet article décrit comment créer une infrastructure pour une op�
 lang: fr_FR
 category: Phishing, Social Engineering, Mail
 ---
-![Créer une infrastructure de phishing gratuitement avec Amazon Web Service et Gophish](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/illustration.jpg)
+![Créer une infrastructure de phishing gratuitement avec Amazon Web Service et Gophish](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/illustration.jpg)
 
 Il est très simple de déployer une infrastructure de phishing grâce aux services d’Amazon Web Service ainsi qu’au framework [Gophish](https://getgophish.com/). Ce framework opensource est dédié à la création de campagnes de phishing et permet un suivi très précis.
 La création d'une campagne de phishing se décline en 3 étapes :
@@ -20,23 +20,23 @@ Amazon Web Service propose de profiter d'offres pendant 12 mois après la date d
 Pour cela, il suffit de s'inscrire sur le [AWS](https://aws.amazon.com/fr/).
 Une fois le compte crée, il suffit de déployer une instance de calcul EC2 :
 
-![Déploiement de l'instance EC2](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/deploiement_instance_EC2.png "Déploiement de l'instance EC2")
+![Déploiement de l'instance EC2](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/deploiement_instance_EC2.png "Déploiement de l'instance EC2")
 
 Il faut ensuite choisir un système compatible avec l'offre gratuite. Je préfère personnellement choisir Ubunut Server :
 
-![Sélection du système d'exploitation](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/selection_OS.png "Sélection du système d'exploitation")
+![Sélection du système d'exploitation](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/selection_OS.png "Sélection du système d'exploitation")
 
 Plusieurs offres de puissance sont disponibles, la configuration minimale suffit amplement à Gophish :
 
-![Choix de la configuration du serveur](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/choix_configuration_serveur.png "Choix de la configuration du serveur")
+![Choix de la configuration du serveur](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/choix_configuration_serveur.png "Choix de la configuration du serveur")
 
 L'étape suivante consiste à créer une paire de clé au format .pem qui permettra de se connecter directement via SSH à l'instance :
 
-![Création d'une paire de clé](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_paire_cle_ssh.png "Création d'une paire de clé")
+![Création d'une paire de clé](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_paire_cle_ssh.png "Création d'une paire de clé")
 
 À ce stade, l'instance devrait être lancée :
 
-![Instance en cours d'exécution](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/instance.png "Instance en cours d'exécution")
+![Instance en cours d'exécution](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/instance.png "Instance en cours d'exécution")
 
 La dernière configuration nécessaire concerne l'ouverture de port de la machine. En effet, il est nécessaire d'autoriser les flux entrants vers les ports :
 * 22 (SSH)
@@ -46,17 +46,17 @@ La dernière configuration nécessaire concerne l'ouverture de port de la machin
 
 Il faut donc configurer le *Groupe de sécurité* :
 
-![Groupe de sécurité](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/groupe_securite_aws.png "Groupe de sécurité")
+![Groupe de sécurité](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/groupe_securite_aws.png "Groupe de sécurité")
 
 La configuration doit ressembler à cela :
 
-![Configuration finale de l'ouverture de port](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/configuration_ouverture_port_aws.png "Configuration finale de l'ouverture de port")
+![Configuration finale de l'ouverture de port](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/configuration_ouverture_port_aws.png "Configuration finale de l'ouverture de port")
 
 *Note : Il est conseillé de modifier le port par défaut de la page d'administration de Gophish et d'autoriser uniquement l'ouverture de port depuis la machine de l'attaquant*
 
 Il faut ensuite connaître l'adresse IP pour se connecter à cette instance, Amazon fournit la ligne de commande à entrer en cliquant sur le bouton *Se connecter* :
 
-![Bouton se connecter](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/bouton_connexion.png "Bouton se connecter")
+![Bouton se connecter](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/bouton_connexion.png "Bouton se connecter")
 
 La configuration de l'instance AWS est désormais terminée.
 
@@ -77,13 +77,13 @@ Les identifiants par défaut sont :
 * Identifiant : **admin**
 * Mot de passe : **gophish**
 
-![Interface d'administration de Gophish](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/interface_administration_gophish.png "Interface d'administration de Gophish")
+![Interface d'administration de Gophish](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/interface_administration_gophish.png "Interface d'administration de Gophish")
 
 ## Création du profil Gopish, template et landing page
 ### Création du profil
 Il est nécessaire de configurer un profil Gophish, c'est à dire configurer des identifiants SMTP, un compte Gmail par exemple peut être utilisé :
 
-![Configuration SMTP](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/configuration_smtp.png "Configuration SMTP")
+![Configuration SMTP](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/configuration_smtp.png "Configuration SMTP")
 
 ### Création du template d'email
 Il est maintenant nécessaire de créer un template d'email. Gophish permet d'utiliser des variables dans le template telles que :
@@ -105,7 +105,7 @@ Il est maintenant nécessaire de créer un template d'email. Gophish permet d'ut
 
 L'email peut être rédigé en HTML pour ajouter plus de structure et le rendre moins "brut".
 
-![Création du template d'email](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_template_email_gophish.png "Création du template d'email")
+![Création du template d'email](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_template_email_gophish.png "Création du template d'email")
 
 ### Création de la landing page
 La landing page correspond à la page qui sera ouverte lorsque l'utilisateur clique sur le lien. Elle peut être un formulaire par exemple. Deux solutions sont disponibles pour la création de la landing page :
@@ -116,7 +116,7 @@ La landing page correspond à la page qui sera ouverte lorsque l'utilisateur cli
 ### Création d'un groupe de victimes
 Cette étape consiste à créer un groupe qui référence les victimes :
 
-![Création du groupe](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_groupe_gophish.png "Création du groupe")
+![Création du groupe](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_groupe_gophish.png "Création du groupe")
 
 Plusieurs méthodes sont possibles :
 * Les victimes peuvent être entrées manuellement. Il est important de remplir tous les champs car les variables comme les prénoms, noms, adresse mail et emploi dans l'entreprise se basent sur ces informations.
@@ -126,13 +126,13 @@ Plusieurs méthodes sont possibles :
 ### Création de la campagne
 La dernière étape est la création de la campagne. Tous les éléments précédemment créés
 
-![Création de la campagne](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_campagne_gophish.png "Création de la campagne")
+![Création de la campagne](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/creation_campagne_gophish.png "Création de la campagne")
 
 Lorsque tout est correctement configuré, il suffit de cliquer sur *Lauch Campaign* pour que les mails soient envoyés à toutes les cibles entrées dans le groupe.
 
 Un tableau de bord lié à la campagne est alors disponible indiquant le nombre d'ouverture de mails et clicks :
 
-![Tableau de bord de la campagne](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/tableau_bord_gophish.png "Tableau de bord de la campagne")
+![Tableau de bord de la campagne](assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/tableau_bord_gophish.png "Tableau de bord de la campagne")
 
 ### Bonus
 Petite astuce, lors d'une campagne de phishing, la **contextualisation** et la **personnalisation** du template génèrera un taux de clic beaucoup plus élevé.
