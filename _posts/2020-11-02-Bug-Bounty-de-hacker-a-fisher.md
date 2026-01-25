@@ -6,13 +6,13 @@ description: "Cet article décrit comment une injection de caractères permet de
 lang: fr_FR
 category: Bug Bounty, injection, phishing
 ---
-![Bug Bounty : De hacker à phisher](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/illustration.jpg)
+![Bug Bounty : De hacker à phisher](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/illustration.jpg)
 
 Dans ce court article, j'expliquerai comment j'ai pu exploiter une vulnérabilité de l'API d'un grand site français pour en faire un scénario de phishing. Je précise bien évidemment que tout a été fait dans la légalité car le site en question est inscrit sur une plateforme de Bug Bounty et j'ai été invité à ce Bug Bounty privé.
 
 ## Injection de caractères spéciaux via l'interface
 Je me suis interessé à l'interface de création de compte du site en question, je me suis rendu compte que lors de l'inscription, un mail est envoyé avec le prénom de la personne qui s'est inscrite. J'ai alors essayé d'injecter des caractères spéciaux. Il ne m'a pas été possible d'injecter des caractères via l'interface :
-[![Injection de caractères](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/interface.jpg)](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/interface.jpg)
+[![Injection de caractères](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/interface.jpg)](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/interface.jpg)
 
 ## Injection de caractères spéciaux via l'API
 Je me suis alors penché sur l'API et j'ai regardé les requêtes qui sont envoyées. J'ai tout d'abord envoyé des informations valides. L'API envoie alors un mail sur l'adresse indiquée avec un lien de validation et retourne le code `200`.
@@ -62,13 +62,13 @@ connection: close
 ```
 
 Le mail reçu est alors le suivant :
-[![Mail d'inscription](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail.jpg)](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail.jpg)
+[![Mail d'inscription](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail.jpg)](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail.jpg)
 
 Si l'utilisateur clique sur `Merci de payer le billet`, il sera redirigé vers le site http://evil.com
 
 ## Créer ou migrer pour exploiter ?
 J'ai ensuite regardé les paramètres de la requête et notamment le paramètre `is_migrated=false`. J'ai rejoué la même requête mais en mettant la valeur à `is_migrated=true`. Le mail reçu a alors cette forme :
-[![Mail de migration](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail2.jpg)](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail2.jpg)
+[![Mail de migration](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail2.jpg)](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/mail2.jpg)
 
 Le système de mail considère que le compte existe déjà et choisi un autre template de mail. J'ai essayé de jouer avec ce paramètre pour voir la réaction du système sur un compte qui existe déjà, l'API vérifie correctement et il n'est pas possible d'envoyer le mail sur un compte existant.
 
@@ -133,11 +133,11 @@ print(str(nombre_de_mail) + " mails envoyés")
 
 Le rendu est alors le suivant :
 
-[![Script d'exploitation](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/script.jpg)](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/script.jpg)
+[![Script d'exploitation](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/script.jpg)](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/script.jpg)
 
 ## Conclusion
 Je n'ai pas pu aller plus loin dans l'exploitation de la vulnérabilité. J'ai donc écrit mon rapport et fait ma vidéo de preuve de concept avec un score CVSS de 5.4. Elle a été acceptée mais non payée car déjà déclarée :
 
-[![Réponse sur YesWeHack](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/ywh_reponse.jpg)](assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/ywh_reponse.jpg)
+[![Réponse sur YesWeHack](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/ywh_reponse.jpg)](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/ywh_reponse.jpg)
 
 Pour conclure, pensez bien à ne **jamais** faire **confiance à ce qu'entre l'utilisateur** et **toujours nettoyer les entrées utilisateur**.
