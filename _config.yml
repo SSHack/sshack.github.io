@@ -151,9 +151,10 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: "/sshack"
+#baseurl: "/sshack"
+baseurl: ""
 # Destination avec le baseurl inclus
-destination: _site/sshack
+#destination: _site/sshack
 
 # ------------ The following options are not recommended to be modified ------------------
 
