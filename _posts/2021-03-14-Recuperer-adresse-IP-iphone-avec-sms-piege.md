@@ -4,7 +4,8 @@ layout: post
 title: "Récupérer l'adresse IP d'un iPhone en envoyant un SMS piégé"
 description: "Cet article décrit comment récupérer l'adresse IP d'un iPhone en envoyant un SMS piégé."
 lang: fr_FR
-category: iphone,ios,hack,adresseIP,SMS
+categories: [CYBERSECURITY, MOBILE SECURITY]
+tags: [iphone, smishing, sms phishing, adresse ip, ios, reconnaissance, ingénierie sociale, tracking, cybersécurité, sms piégé]
 ---
 ![Récupérer IP iPhone avec SMS piégé](/assets/images/2021-03-14-Recuperer-adresse-IP-iphone-avec-sms-piege/illustration.jpg)
 

@@ -4,7 +4,8 @@ layout: post
 title: "Spying Challenge à leHack 2019 : Se prendre pour James Bond le temps d’un challenge"
 description: "Cet article présente le challenge Spying Challenge qui s'est déroulé en 2019. Ce challenge est un challenge, phishing, espionnage lors de la conférence leHack"
 lang: fr_FR
-category: CTF
+categories: [CYBERSECURITY, CTF & EVENTS]
+tags: [lehack, spying challenge, ctf, writeup, espionnage, challenge, cybersécurité, investigation, sécurité informatique, évènement]
 ---
 ![Spying Challenge 2019](/assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/illustration.png)
 

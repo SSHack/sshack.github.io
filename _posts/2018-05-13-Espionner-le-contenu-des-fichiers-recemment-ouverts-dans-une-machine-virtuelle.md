@@ -4,7 +4,8 @@ layout: post
 title: "Espionner le contenu des fichiers récemment ouverts dans une machine virtuelle"
 description: "Cet article présente comment extraire des informations sensibles dans la mémoire RAM stockée d'une machine VirtualBox."
 lang: fr_FR
-category: Machine Virtuelle
+categories: [CYBERSÉCURITÉ, ANALYSE FORENSIQUE]
+tags: [machine virtuelle, vm, forensics, fichiers récents, artefacts, traces numériques, virtualisation, espionnage, cybersécurité, analyse forensique]
 ---
 ![Flux de données : illustration](/assets/images/2018-05-13-Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/illustration.jpg)
 

@@ -4,7 +4,8 @@ layout: post
 title: "Créer son propre environnement d’analyse multi-antivirus"
 description: "Cet article explique comment créer un service comme VirusTotal afin de ne pas partager avec les éditeurs d'antivirus les fichiers analysés"
 lang: fr_FR
-category: Malware
+categories: [CYBERSÉCURITÉ, ANALYSE DE MALWARES]
+tags: [antivirus, malware, cybersécurité, laboratoire, analyse technique, threat intelligence, scanner, détection, auto-hébergement, sécurité informatique]
 ---
 
 Dans cet article je vais vous expliquer comment mettre en place votre propre système d’analyse multi-antivirus à l’instar de VirusTotal, MetaDefender ou encore Jotti. J’ai décidé de faire mon propre système car je ne souhaite pas partager avec le site internet ou les éditeurs d’antivirus les fichiers que j’analyse.

@@ -4,7 +4,8 @@ layout: post
 title: "Pirater un réseau wifi sécurisé"
 description: "Cet article décrit comment pirater un réseau wifi qui est sécurisé. Les méthodes pour protéger son réseau wifi d'un hacker sont également abordées."
 lang: fr_FR
-category: phishing,wifi,hack,cracking,bruteforce
+categories: [CYBERSECURITY, WIRELESS SECURITY]
+tags: [wifi hacking, aircrack-ng, wpa2, kali linux, handshake, sécurité sans fil, brute force, cracking, evil twin, wps, ingénierie sociale, test d'intrusion]
 ---
 ![Pirater un réseau wifi sécurisé](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/illustration.jpg)
 

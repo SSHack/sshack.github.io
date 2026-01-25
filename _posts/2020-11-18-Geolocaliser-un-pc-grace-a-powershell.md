@@ -4,7 +4,8 @@ layout: post
 title: "Géolocaliser un PC grâce à PowerShell"
 description: "Cet article décrit comment lors d'une opération de RedTeam ou APT, il est possible de géolocaliser précisément grâce à PowerShell la cible compromise."
 lang: fr_FR
-category: OSINT,geolocalisation,powershell
+categories: [CYBERSECURITY, WINDOWS]
+tags: [powershell, géolocalisation, windows, reconnaissance, cybersécurité, tracking, ip geolocation, post-exploitation, scripting, sécurité informatique]
 ---
 ![Géolocaliser un PC grâce à PowerShell](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/illustration.jpg)
 

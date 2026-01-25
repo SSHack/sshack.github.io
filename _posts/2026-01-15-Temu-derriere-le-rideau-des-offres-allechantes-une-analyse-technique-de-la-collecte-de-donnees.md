@@ -4,7 +4,8 @@ layout: post
 title: "Temu : Derrière le Rideau des Offres Alléchantes, une Analyse Technique de la Collecte de Données"
 description: "Cet article basé sur l'analyse technique de ntc.swiss décrit les différents mécanisme malveillants de Temu pour utiliser les données personnelles de ses utilisateurs."
 lang: fr_FR
-category: temu,malware,cybersecurité,données personnelles
+categories: [CYBERSECURITY, MALWARE]
+tags: [temu, data collection, privacy analysis, mobile security, app analysis, pdd holdings, technical analysis, data tracking, android security, privacy, cybersécurité]
 ---
 ![Temu : Derrière l'offre alléchante, se cache un malware](/assets/images/2026-01-15-Temu-derriere-le-rideau-des-offres-allechantes-une-analyse-technique-de-la-collecte-de-donnees/temu-malware.png)
 

@@ -4,7 +4,8 @@ layout: post
 title: "Sortir du mode de récupération sur un LG G6"
 description: "Cet article présente comment sortir du mode de récupération du LG G6 en cas de blocage lors de l'instalation d'une custom ROM."
 lang: fr_FR
-category: Custom ROM
+categories: [SMARTPHONE, ANDROID]
+tags: [lg g6, custom rom, recovery mode, android, tutoriel, dépannage, mode de récupération, smartphone, redémarrage, aide technique]
 ---
 ![LG G6](/assets/images/2017-12-28-Sortir-du-mode-de-recuperation-sur-un-lg-g6/illustration.png)
 

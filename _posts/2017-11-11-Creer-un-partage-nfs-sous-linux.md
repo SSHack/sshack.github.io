@@ -4,7 +4,8 @@ layout: post
 title: "Créer un partage NFS sous Linux"
 description: "Cet article présente comment créer un dossier de partage en réseau local en utilisant le protocole Network File System (NFS) sous Linux de manière sécurisée."
 lang: fr_FR
-category: NFS
+categories: [ADMINISTRATION SYSTÈME, LINUX]
+tags: [nfs, linux, partage de fichiers, tutoriel, réseau, sysadmin, configuration, stockage, serveur, réseau local]
 ---
 ![Linux NFS](/assets/images/2017-11-11-Creer-un-partage-nfs-sous-linux/illustration.png)
 

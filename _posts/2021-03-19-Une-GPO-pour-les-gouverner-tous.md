@@ -4,7 +4,8 @@ layout: post
 title: "Une GPO pour les gouverner tous : Compromettre n'importe quel poste de l'Active Directory via une GPO"
 description: "Cet article décrit comment compromettre un poste de l'Active Directory via une GPO."
 lang: fr_FR
-category: redteam,malware,active directory,gpo
+categories: [CYBERSECURITY, ACTIVE DIRECTORY]
+tags: [gpo, group policy object, active directory, windows server, red teaming, mouvement latéral, persistance, administration système, cybersécurité, infrastructure security, exploitation]
 ---
 ![Compromission d'un poste de l'Active Directory via une GPO](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/illustration.PNG)
 

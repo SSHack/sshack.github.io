@@ -4,7 +4,8 @@ layout: post
 title: "Révéler des informations sensibles grâce aux Google Dorks"
 description: "Cet article présente les principales requêtes Google Dorks pour trouver des documents confidentiels, usurpation d'identité, vulnérabilité web"
 lang: fr_FR
-category: Google Dorks
+categories: [CYBERSECURITY, OSINT]
+tags: [google dorks, google hacking, osint, reconnaissance, fuite de données, cybersécurité, hacking éthique, recherche d'information, dorking, sécurité web]
 ---
 ![Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/illustration.jpg)
 
