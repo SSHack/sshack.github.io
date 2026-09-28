@@ -63,14 +63,14 @@ Bien sûr, il faudra quelques coups de Photoshop ou GIMP mais rien de bien compl
 ## Utiliser les Dorks pour se renseigner sur une entreprise
 Étant donné la puissance des recherches, nous pouvons utiliser les Dorks pour se renseigner sur une entreprise. Je ne donnerai pas la requête mais on peut par exemple cibler une entreprise et un type de fichier. On peut donc par exemple apprendre qu’une grande entreprise spécialisée dans l’aérospatiale, la défense, la sécurité et le transport terrestre vend des antennes, guides d’ondes et équipements connexes aux gardes côtes américains. Ce type de fichier mentionne, le prix, les références… Cette information pourrait-être utilisée pour créer un mail d’hameçonnage (phishing en Anglais) par exemple.
 
-## Utilisation des Dorks pour trouver des failles de sécurité
-Les Dorks peuvent aussi être utilisé pour trouver des failles de sécurité, je vais prendre l’exemple d’une faille de type Insecure Code Management. Pour faire simple, cette faille réside dans le fait que le code source soit accessible publiquement. Comment ? Les développeurs ont tout simplement hébergé le dépôt SVN ou GIT sur le serveur directement. Ainsi, à la racine du site nous trouverons le fichier .git et .git/HEAD.
+## Utilisation des Dorks pour trouver des vulnérabilités
+Les Dorks peuvent aussi être utilisé pour trouver des vulnérabilités, je vais prendre l’exemple d’une vulnérabilité de type Insecure Code Management. Pour faire simple, cette vulnérabilité réside dans le fait que le code source soit accessible publiquement. Comment ? Les développeurs ont tout simplement hébergé le dépôt SVN ou GIT sur le serveur directement. Ainsi, à la racine du site nous trouverons le fichier .git et .git/HEAD.
 
 ```
 intitle:"index of" ".git"
 ```
 
-Et voilà, une liste de sites potentiellement vulnérables, on peut faire la même chose pour la configuration SVN ou tout autre idée qui viendrait à l’esprit. Très rentable pour un pirate malveillant de faire un script en Python qui exploite la faille de manière massive et automatique.
+Et voilà, une liste de sites potentiellement vulnérables, on peut faire la même chose pour la configuration SVN ou tout autre idée qui viendrait à l’esprit. Très rentable pour un pirate malveillant de faire un script en Python qui exploite la vulnérabilité de manière massive et automatique.
 
 Je rappelle bien sûr que tout ce qui est écrit dans cet article est illégal selon l’utilisation que vous en faites. Vous pourrez également lire ces articles qui m’ont inspirés. [Use Google Search Operators to Find Elusive Information de null-byte.wonderhowto.com](https://null-byte.wonderhowto.com/how-to/use-google-search-operators-find-elusive-information-0198558/)
 
@@ -85,4 +85,4 @@ Si vous devez absolument envoyer vos documents en ligne ou à quelqu’un, vous 
 
 Les données ne sont stockées que deux heures après le traitement selon la [FAQ du site](https://www.ilovepdf.com/fr/aide/foire-aux-questions), une fois votre traitement terminé, vous pouvez même le supprimer manuellement. Il ne reste donc que quelques secondes sur le serveur. Bien sûr, on est jamais à l’abri d’un serveur qui contient une porte dérobée avec quelqu’un qui volerait chaque document.
 
-Pour la détection de failles, selon moi c’est moins évident. Il faut je pense organiser des audits de sécurité le plus régulièrement possible.
+Pour la détection de vulnérabilités, selon moi c’est moins évident. Il faut je pense organiser des audits de sécurité le plus régulièrement possible.
