@@ -24,7 +24,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-html[data-mode="dark"] {
+:root[data-bs-theme="dark"] {
   /* Cadre */
   --main-bg: #101828;
   --mask-bg: #0a101c;
@@ -109,13 +109,13 @@ h1, h2, h3, h4, h5, h6, .post-title, .card-title {
 }
 
 /* Blocs de code et tableaux sur le même fond que le site */
-html[data-mode="dark"] .highlight,
-html[data-mode="dark"] .highlight .w,
-html[data-mode="dark"] div[class^="language-"] {
+:root[data-bs-theme="dark"] .highlight,
+:root[data-bs-theme="dark"] .highlight .w,
+:root[data-bs-theme="dark"] div[class^="language-"] {
   background-color: #0a101c;
 }
 
-html[data-mode="dark"] #archives li:nth-child(odd) {
+:root[data-bs-theme="dark"] #archives li:nth-child(odd) {
   background-image: linear-gradient(to left, #101828, #16213a, #16213a, #16213a, #101828);
 }
 
@@ -128,9 +128,9 @@ html[data-mode="dark"] #archives li:nth-child(odd) {
   overflow: hidden;
 }
 
-/* Titre du site en blanc, accent orange au survol */
-#sidebar .site-title a:hover {
-  color: #f7941e;
+/* Titre du site : légèrement plus lumineux au survol */
+#sidebar .site-title:hover {
+  filter: brightness(1.15);
 }
 
 /* Liens de la barre latérale actifs en orange */
@@ -155,6 +155,173 @@ blockquote {
 .consent__actions { display: flex; gap: 10px; }
 .consent .btn { border-radius: 100px; padding: 6px 20px; color: #f6f3ec; border-color: rgba(255, 255, 255, 0.25); }
 .consent .btn:hover { border-color: #f7941e; color: #f7941e; background: transparent; }
+
+/* ==========================================================================
+   Mise en page : colonne principale plus large (cartes d'articles, articles)
+   ========================================================================== */
+@media (min-width: 1200px) {
+  #main-wrapper > .container {
+    max-width: 1320px;
+    /* !important : Chirpy pose la classe utilitaire px-xxl-5 (3rem) */
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  #main-wrapper .col-xl-9 {
+    flex: 0 0 auto;
+    width: 78%;
+  }
+  #main-wrapper .col-xl-3 {
+    flex: 0 0 auto;
+    width: 22%;
+  }
+}
+
+@media (min-width: 1650px) {
+  #main-wrapper > .container {
+    max-width: 1440px;
+  }
+}
+
+/* Cartes de la page d'accueil : un peu plus de place pour le titre et l'image */
+#post-list .card-wrapper .card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+#post-list .card-wrapper .card-title {
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
+/* ==========================================================================
+   Accents orange → ambre (dégradé du site principal)
+   ========================================================================== */
+:root {
+  --sshack-grad: linear-gradient(90deg, #f7941e 0%, #ffb454 100%);
+  --sshack-grad-btn: linear-gradient(90deg, #f28a12 0%, #ffab3f 100%);
+}
+
+/* Halo doré en haut de page, comme l'en-tête de sshack.me */
+:root[data-bs-theme="dark"] body {
+  background-image: radial-gradient(ellipse 70% 420px at 60% -120px, rgba(247, 148, 30, 0.16), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+/* Titre du site en dégradé */
+#sidebar .site-title {
+  background: var(--sshack-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Sous-titre sur plusieurs lignes sans chevaucher le menu */
+#sidebar .site-subtitle {
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+#sidebar #avatar {
+  box-shadow: 0 0 0 2px #101828, 0 0 0 4px #f7941e, 0 8px 30px rgba(247, 148, 30, 0.35);
+}
+
+/* Onglet actif : pastille dégradée, comme le bouton « Demander un devis » */
+#sidebar ul li.nav-item.active .nav-link {
+  background: var(--sshack-grad-btn);
+  color: #101828;
+  box-shadow: 0 8px 26px rgba(247, 148, 30, 0.28);
+}
+
+#sidebar ul li.nav-item.active .nav-link i {
+  opacity: 1;
+}
+
+/* Boutons principaux */
+.btn-primary {
+  background: var(--sshack-grad-btn);
+  border-color: transparent;
+  color: #101828;
+  font-weight: 600;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--sshack-grad);
+  border-color: transparent;
+  color: #101828;
+}
+
+/* Cartes de l'accueil : liseré et titre ambre au survol */
+#post-list .card-wrapper {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#post-list .card-wrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(247, 148, 30, 0.55);
+}
+
+#post-list .card-wrapper:hover .card-title {
+  background: var(--sshack-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+#post-list .post-meta i {
+  color: #f7941e;
+}
+
+/* Pagination : page courante en dégradé */
+.pagination .page-item.active .page-link {
+  background: var(--sshack-grad-btn);
+  color: #101828;
+}
+
+/* Titres d'article et de section */
+.content h2::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 3px;
+  margin-bottom: 0.6rem;
+  border-radius: 3px;
+  background: var(--sshack-grad);
+}
+
+.content h3 {
+  color: #ffb454;
+}
+
+/* Tags : pastilles ambre, comme les badges du site */
+#panel-wrapper .post-tag,
+.post-tags .post-tag,
+#tags .tag {
+  background: rgba(255, 180, 84, 0.12);
+  border-color: transparent;
+  color: #ffb454;
+}
+
+#panel-wrapper .post-tag:hover,
+.post-tags .post-tag:hover,
+#tags .tag:hover {
+  background: var(--sshack-grad-btn);
+  color: #101828;
+}
+
+/* Barre de progression du sommaire et liens du panneau */
+#panel-wrapper .panel-heading {
+  color: #f6f3ec;
+}
+
+#panel-wrapper #related-posts a:hover,
+#panel-wrapper .post-content a:hover {
+  color: #ffb454;
+}
+
+/* Bandeau de mise à jour PWA : inutile sans cache hors-ligne (voir _config.yml) */
+#notification {
+  display: none !important;
+}
 
 /* Sélection de texte */
 ::selection {
