@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Géolocaliser un PC grâce à PowerShell"
 description: "Cet article décrit comment lors d'une opération de RedTeam ou APT, il est possible de géolocaliser précisément grâce à PowerShell la cible compromise."
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, WINDOWS]
 tags: [powershell, géolocalisation, windows, reconnaissance, cybersécurité, tracking, ip geolocation, post-exploitation, scripting, sécurité informatique]
+image: /assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/illustration.jpg
 ---
-![Géolocaliser un PC grâce à PowerShell](/assets/images/2020-11-18-Geolocaliser-un-pc-grace-a-powershell/illustration.jpg)
 
 Lorsqu'un PC est compromis, il peut-être intéressant de connaître sa géolocalisation. Géolocaliser un équipement peut également être utile pour des challenges OSINT.
 

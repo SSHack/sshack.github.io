@@ -1,0 +1,35 @@
+# Blog SSHack
+
+> Blog technique de SSHack, cabinet français de sécurité offensive (marque lancée en 2025 par CyberFactory). Articles en français sur le Red Team, la recherche de vulnérabilités, l'analyse de malwares et l'OSINT, rédigés par les membres de l'équipe ; les articles antérieurs à 2025 ont été publiés avant le lancement du cabinet. Site principal : https://sshack.me
+
+L'équipe réunit quatre experts issus du Ministère des Armées (Red Team certifiés OSCP et OSEP, OSINT / Cyber Threat Intelligence, DevSecOps). Les techniques offensives présentées le sont à des fins pédagogiques et pour des missions autorisées.
+
+## Recherche de vulnérabilités
+
+- [Orion SolarWinds : rupture de cloisonnement dans la gestion des nœuds (CVE-2021-28674)](https://blog.sshack.me/posts/Orion-SolarWinds-ma-premiere-cve-2021-28674/) : contrôle d'accès défaillant dans SolarWinds Orion Platform, découvert par un membre de l'équipe et divulgué de manière coordonnée.
+- [Bug Bounty : de hacker à phisher](https://blog.sshack.me/posts/Bug-Bounty-de-hacker-a-fisher/) : injection de caractères exploitée dans un scénario de phishing (programme YesWeHack).
+- [Récupérer l'adresse IP d'un iPhone en envoyant un SMS piégé](https://blog.sshack.me/posts/Recuperer-adresse-IP-iphone-avec-sms-piege/) : fuite d'adresse IP via l'aperçu des liens dans les SMS.
+
+## Red Team
+
+- [VSCode : comment pirater un développeur en un clic](https://blog.sshack.me/posts/vscode-comment-pirater-en-un-clic-un-developpeur/) : exécution automatique via le fichier tasks.json, implant Sliver, détection et protection.
+- [Une GPO pour les gouverner tous](https://blog.sshack.me/posts/Une-GPO-pour-les-gouverner-tous/) : compromettre les postes d'un Active Directory via une stratégie de groupe.
+- [Exploitation des raccourcis Windows pour exécuter des malwares](https://blog.sshack.me/posts/Creation-dropper-raccourci-malware/) : accès initial par fichier .lnk.
+- [Évasion de Windows Defender grâce à un injecteur](https://blog.sshack.me/posts/Evasion-Windows-Defender-injecteur-dropper/) : principe d'un dropper et limites de la détection.
+- [Créer une infrastructure de phishing avec AWS et Gophish](https://blog.sshack.me/posts/Creer-une-infrastructure-de-phishing/) : mise en place d'une campagne de phishing pour une opération Red Team.
+- [Géolocaliser un PC grâce à PowerShell](https://blog.sshack.me/posts/Geolocaliser-un-pc-grace-a-powershell/) : géolocalisation d'un poste compromis ou volé (réseaux Wi-Fi environnants, commandes Windows).
+- [Pirater un réseau wifi sécurisé](https://blog.sshack.me/posts/Pirater-un-reseau-wifi-securise/) : attaques sur les réseaux sans fil et moyens de s'en protéger.
+
+## Analyse de malwares et OSINT
+
+- [Temu : analyse technique de la collecte de données](https://blog.sshack.me/posts/Temu-derriere-le-rideau-des-offres-allechantes-une-analyse-technique-de-la-collecte-de-donnees/) : mécanismes de collecte de données de l'application.
+- [Faire de la rétro-ingénierie dans le cadre d'une analyse de malware](https://blog.sshack.me/posts/Faire-de-la-retro-ingenierie-dans-le-cadre-dune-analyse-de-malware/) : analyse d'un malware (keylogger, capture d'écran, webcam).
+- [Révéler des informations sensibles grâce aux Google Dorks](https://blog.sshack.me/posts/Reveler-des-informations-sensibles-grace-aux-Google-Dorks/) : opérateurs de recherche, documents exposés et protection.
+- [Spying Challenge à leHack 2019](https://blog.sshack.me/posts/Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/) : challenge d'OSINT et d'ingénierie sociale.
+
+## Optional
+
+- [Créer son propre environnement d'analyse multi-antivirus](https://blog.sshack.me/posts/Creer-son-propre-environnement-analyse-multi-antivirus/)
+- [Espionner le contenu des fichiers récemment ouverts dans une machine virtuelle](https://blog.sshack.me/posts/Espionner-le-contenu-des-fichiers-recemment-ouverts-dans-une-machine-virtuelle/)
+- [À propos](https://blog.sshack.me/about/)
+- [Site principal SSHack](https://sshack.me/) : audit, pentest, Red Team, TLPT DORA, développement sécurisé, conseil et formation.

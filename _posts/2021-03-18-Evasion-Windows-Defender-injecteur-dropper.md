@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Evasion de Windows Defender grâce à un injecteur (dropper)"
 description: "Cet article décrit comment rendre indétectable n'importe quel malware auprès de Windows Defender."
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, RED TEAM]
 tags: [windows defender, evasion, injector, dropper, malware, av bypass, shellcode, red teaming, obfuscation, cybersécurité, bypassing antivirus, injection de code]
+image: /assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/illustration.PNG
 ---
-![Evasion de Windows Defender grâce à un injecteur (dropper)](/assets/images/2021-03-18-Evasion-Windows-Defender-injecteur-dropper/illustration.PNG)
 
 Un injecteur (ou *dropper*, en anglais), est un programme créé pour installer un logiciel malveillant sur un système cible.
 Il s'agit d'une forme minimaliste de cheval de Troie. Le code du logiciel malveillant est soit inclus à même l'injecteur, soit téléchargé sur la machine à partir d'Internet une fois activé.

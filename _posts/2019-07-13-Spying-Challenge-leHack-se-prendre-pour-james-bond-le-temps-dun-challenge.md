@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Spying Challenge à leHack 2019 : Se prendre pour James Bond le temps d’un challenge"
 description: "Cet article présente le challenge Spying Challenge qui s'est déroulé en 2019. Ce challenge est un challenge, phishing, espionnage lors de la conférence leHack"
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, CTF & EVENTS]
 tags: [lehack, spying challenge, ctf, writeup, espionnage, challenge, cybersécurité, investigation, sécurité informatique, évènement]
+image: /assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/illustration.png
 ---
-![Spying Challenge 2019](/assets/images/2019-07-13-Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/illustration.png)
 
 J’ai eu la chance de participer à l’évènement [leHack 2019](https://lehack.org/fr), nouveau nom de La Nuit du Hack. Nous nous sommes lancés avec mon association [Hack In Provence](https://www.hackinprovence.fr/) dans le [Spying Challenge 2019](https://spyingchallenge.com/). Cette compétition a pour but de mettre à l’épreuve vos talents en matière d'**OSINT (renseignement d'origine sources ouvertes)**, **hack**, **tracking**, **social engineering**, **Lockpicking** (crochetage de serrure) et **intrusion physique**. Une panoplie de compétences passionnantes à développer histoire de se prendre pour James Bond le temps du challenge.
 

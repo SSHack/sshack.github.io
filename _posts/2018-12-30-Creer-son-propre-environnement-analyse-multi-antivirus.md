@@ -3,7 +3,6 @@ published: true
 layout: post
 title: "Créer son propre environnement d’analyse multi-antivirus"
 description: "Cet article explique comment créer un service comme VirusTotal afin de ne pas partager avec les éditeurs d'antivirus les fichiers analysés"
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, ANALYSE DE MALWARES]
 tags: [antivirus, malware, cybersécurité, laboratoire, analyse technique, threat intelligence, scanner, détection, auto-hébergement, sécurité informatique]
 ---

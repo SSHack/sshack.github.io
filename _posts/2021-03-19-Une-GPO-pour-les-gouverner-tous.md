@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Une GPO pour les gouverner tous : Compromettre n'importe quel poste de l'Active Directory via une GPO"
 description: "Cet article décrit comment compromettre un poste de l'Active Directory via une GPO."
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, ACTIVE DIRECTORY]
 tags: [gpo, group policy object, active directory, windows server, red teaming, mouvement latéral, persistance, administration système, cybersécurité, infrastructure security, exploitation]
+image: /assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/illustration.PNG
 ---
-![Compromission d'un poste de l'Active Directory via une GPO](/assets/images/2021-03-19-Une-GPO-pour-les-gouverner-tous/illustration.PNG)
 
 L'objectif principal d'Active Directory est de fournir des services centralisés d'identification et d'authentification à un réseau d'ordinateurs utilisant le système Windows, macOS ou encore Linux. Il permet également l'attribution et **l'application de stratégies de groupes** ainsi que **l'installation de mises à jour critiques** par les administrateurs.
 L'Active Directory est donc le nerf de la guerre du pentester Red Team. En cas de compromissions de ce dernier, la partie est gagnée. L'attaquant peut alors rebondir sur les différents postes du domaine compromis.

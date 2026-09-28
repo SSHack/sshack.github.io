@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "VSCode : Comment pirater un développeur en un clic"
 description: "Cet article montre comment il est possible de détourner VSCode via le fichier tasks.json pour lui faire télécharger et exécuter un implant."
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, RED TEAM]
 tags: [cybersécurité, initial access, malware, obfuscation, penetration testing, red teaming, tasks.json, vscode, windows]
+image: /assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/illustration_article_vscode_tasks_json.png
 ---
-![VSCode : Comment pirater un développeur en un clic](/assets/images/2026-02-09-vscode-comment-pirater-un-developpeur-en-un-clic/illustration_article_vscode_tasks_json.png)
 
 Dans le monde de la cybersécurité et du Red Teaming, les développeurs sont des cibles de choix. Possédant souvent des privilèges élevés, des accès aux pipelines CI/CD et des clés SSH sensibles, leur compromission peut mener à une attaque *supply chain* dévastatrice. Aujourd'hui, nous explorons une technique redoutable : l'utilisation du fichier `tasks.json` de Visual Studio Code pour exécuter un implant du *framework* Sliver.
 

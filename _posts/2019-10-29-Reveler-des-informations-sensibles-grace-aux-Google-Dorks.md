@@ -2,14 +2,13 @@
 published: true
 layout: post
 title: "Révéler des informations sensibles grâce aux Google Dorks"
-description: "Cet article présente les principales requêtes Google Dorks pour trouver des documents confidentiels, usurpation d'identité, vulnérabilité web"
-lang: fr_FR
+description: "Cet article présente les principales requêtes Google Dorks, les risques d'exposition de documents personnels et de vulnérabilités web, et comment s'en protéger."
 categories: [CYBERSÉCURITÉ, OSINT]
 tags: [google dorks, google hacking, osint, reconnaissance, fuite de données, cybersécurité, hacking éthique, recherche d'information, dorking, sécurité web]
+image: /assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/illustration.jpg
 ---
-![Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/illustration.jpg)
 
-J’aimerais parler des Google Dorks. Rien qui ne soit pas déjà connu, mais j’en avais vaguement parlé sur l’article du [Spying Challenge](https://clement-bouder.fr/blog/ctf/2019/07/13/Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge.html).
+J’aimerais parler des Google Dorks. Rien qui ne soit pas déjà connu, mais j’en avais vaguement parlé sur l’article du [Spying Challenge](/posts/Spying-Challenge-leHack-se-prendre-pour-james-bond-le-temps-dun-challenge/).
 
 De quoi parle t-on quand on emploie le terme Google Dorks, selon [Wikipédia](https://fr.wikipedia.org/wiki/Google_hacking) :
 
@@ -34,31 +33,10 @@ Pour résumer, on pourrait dire qu’un Dork est un filtre, une sorte d’entonn
 
 Maintenant que les bases sont posées, seule l’imagination (et le contenu référencé bien entendu) de la personne effectuant des recherches va limiter les résultats.
 
-## Utilisation des Dorks pour de l’usurpation d’identité
-On peut s’en servir tout d’abord pour trouver des documents d’identité par exemple sur des sites hébergeant des fichiers PDF. Dans le cas présent, les utilisateurs ont explicitement autorisé le site à héberger le document de manière publique et donc à être indexé :
-`site:www.fichier-pdf.fr filetype:pdf intext:IBAN FR76`
-[![Vol de RIB via des Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-iban.jpg)](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-iban.jpg)
-Il ne reste qu’à l’usurpateur de choisir sa banque ou de spécifier carrément une certaine banque comme la Caisse d’Épargne (elle ou une autre, peu importe) et choisir son identité, particulier ou entreprise, il y a le choix :
-```
-site:www.fichier-pdf.fr intext:IBAN FR76*caisse*
-```
+## Documents personnels exposés : un risque d’usurpation d’identité
+Les Dorks montrent aussi à quel point des documents personnels peuvent se retrouver indexés. Sur les sites d’hébergement de fichiers PDF, de nombreux utilisateurs publient sans le savoir des RIB, des relevés bancaires ou des pièces d’identité : en autorisant l’hébergement public, ils autorisent aussi leur indexation par les moteurs de recherche. Une simple requête combinant l’opérateur `site:` et un mot-clé comme `IBAN` suffit à faire remonter ce type de fichiers.
 
-Ce n’est qu’un RIB me dirait vous, il nous manque des relevés de comptes et factures ! C’est parti :
-```
-site:www.fichier-pdf.fr intext:*caisse*relevé*`
-```
-
-[![Vol de relevé bancaire via des Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-carte-identite.jpg)](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-carte-identite.jpg)
-
-Je n’ai pas pris le temps de vérifier si les relevés et les RIB sont liés mais il n’est pas difficile en croisant les données de modifier les fichiers afin de constituer une véritable identité. D’ailleurs, ça serait « cool » d’avoir une carte vitale ou identité :
-
-```
-site:www.fichier-pdf.fr intext:*identite*
-site:www.fichier-pdf.fr intext:*vitale*
-```
-[![Vol de carte d’identité via des Google Dorks](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-releves-bancaire.jpg)](/assets/images/2019-10-29-Reveler-des-informations-sensibles-grace-aux-Google-Dorks/google-dorks-releves-bancaire.jpg)
-
-Bien sûr, il faudra quelques coups de Photoshop ou GIMP mais rien de bien compliqué. Je me suis arrêté au seuls résultats du site www.fichier-pdf.fr (que j’ai contacté pour signaler les fichiers), je vous laisse imaginer si j’avais cherché sur le web entier. Voilà comment en quelques minutes une personne qui à simplement envoyé en deux clics ses documents se retrouve piégée pour de longues années à essayer de prouver qu’elle n’a jamais contracté ce crédit, acheté cet article sur le Darkweb ou n’importe quoi d’autre. [Cet article du journal Le Parisien](https://www.leparisien.fr/faits-divers/vol-de-permis-de-conduire-je-vis-un-cauchemar-02-11-2019-8185152.php) en parle très bien. Le problème d’usurpation d’identité est long à traiter comme le rapporte [cet autre article](https://www.leparisien.fr/faits-divers/permis-de-conduire-cette-arnaque-qui-vous-fait-payer-la-contravention-d-un-autre-02-11-2019-8185149.php). Malheureusement, il arrive aussi que des fichiers contenant des données médicales soient en ligne par exemple.
+Nous ne détaillons volontairement pas la démarche : cette section vise uniquement à sensibiliser au risque. Lors de ces recherches, les fichiers trouvés ont été signalés à l’hébergeur concerné. Pour une victime, les conséquences peuvent durer des années : il faut prouver qu’on n’a jamais contracté tel crédit ou effectué tel achat. [Cet article du journal Le Parisien](https://www.leparisien.fr/faits-divers/vol-de-permis-de-conduire-je-vis-un-cauchemar-02-11-2019-8185152.php) en parle très bien, et le problème est long à traiter comme le rapporte [cet autre article](https://www.leparisien.fr/faits-divers/permis-de-conduire-cette-arnaque-qui-vous-fait-payer-la-contravention-d-un-autre-02-11-2019-8185149.php). Des fichiers contenant des données médicales se retrouvent parfois aussi en ligne.
 
 ## Utiliser les Dorks pour se renseigner sur une entreprise
 Étant donné la puissance des recherches, nous pouvons utiliser les Dorks pour se renseigner sur une entreprise. Je ne donnerai pas la requête mais on peut par exemple cibler une entreprise et un type de fichier. On peut donc par exemple apprendre qu’une grande entreprise spécialisée dans l’aérospatiale, la défense, la sécurité et le transport terrestre vend des antennes, guides d’ondes et équipements connexes aux gardes côtes américains. Ce type de fichier mentionne, le prix, les références… Cette information pourrait-être utilisée pour créer un mail d’hameçonnage (phishing en Anglais) par exemple.

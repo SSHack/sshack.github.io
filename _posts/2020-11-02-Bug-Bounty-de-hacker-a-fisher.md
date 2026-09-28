@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Bug Bounty : De hacker à phisher"
 description: "Cet article décrit comment une injection de caractères permet de créer un scénario de phishing dans le cadre d'un BugBounty"
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, BUG BOUNTY]
 tags: [bug bounty, hacker, yeswehack, bug hunting, hacking éthique, vulnérabilité, sécurité web, reconnaissance, plateforme, cybersécurité]
+image: /assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/illustration.jpg
 ---
-![Bug Bounty : De hacker à phisher](/assets/images/2020-11-02-Bug-Bounty-de-hacker-a-fisher/illustration.jpg)
 
 Dans ce court article, j'expliquerai comment j'ai pu exploiter une vulnérabilité de l'API d'un grand site français pour en faire un scénario de phishing. Je précise bien évidemment que tout a été fait dans la légalité car le site en question est inscrit sur une plateforme de Bug Bounty et j'ai été invité à ce Bug Bounty privé.
 
@@ -94,9 +93,9 @@ print("""
  ╚═════╝╚══════╝╚══════╝╚═════╝ ╚══════╝╚═╝  ╚═╝
 30/04/2020
 API account spammer
-Créé par Clément BOUDER pour le Bug Bounty YesWeHack
+PoC réalisé par l'équipe SSHack pour le Bug Bounty YesWeHack
 Ceci est un PoC merci de ne pas l'utiliser de manière malveillante
-Mon site : https://clement-bouder.fr
+https://sshack.me
 """)
 
 parser = argparse.ArgumentParser()

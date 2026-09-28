@@ -1,0 +1,163 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* Personnalisation SSHack (ajoutée après le thème) */
+
+/* ==========================================================================
+   Charte SSHack appliquée au thème Chirpy (même palette que sshack.me)
+   Bleu nuit #101828, accent orange #f7941e, texte ivoire, police Inter.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../fonts/inter-latin-var.woff2") format("woff2-variations"), url("../fonts/inter-latin-var.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html[data-mode="dark"] {
+  /* Cadre */
+  --main-bg: #101828;
+  --mask-bg: #0a101c;
+  --main-border-color: rgba(255, 255, 255, 0.07);
+
+  /* Texte */
+  --text-color: #c3cad8;
+  --text-muted-color: #8d97ab;
+  --text-muted-highlight-color: #c3cad8;
+  --heading-color: #f6f3ec;
+  --label-color: #8d97ab;
+  --blockquote-border-color: #f7941e;
+  --blockquote-text-color: #a9b2c3;
+  --link-color: #ffb054;
+  --link-underline-color: rgba(255, 176, 84, 0.45);
+  --button-bg: rgba(255, 255, 255, 0.035);
+  --btn-border-color: rgba(255, 255, 255, 0.14);
+  --card-header-bg: #0d1422;
+  --checkbox-checked-color: #f7941e;
+
+  /* Barre latérale */
+  --site-title-color: #f6f3ec;
+  --site-subtitle-color: #8d97ab;
+  --sidebar-bg: #0d1422;
+  --sidebar-border-color: rgba(255, 255, 255, 0.07);
+  --sidebar-muted-color: #8d97ab;
+  --sidebar-active-color: #f7941e;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.065);
+  --sidebar-btn-bg: rgba(255, 255, 255, 0.035);
+  --sidebar-btn-color: #c3cad8;
+  --avatar-border-color: rgba(247, 148, 30, 0.6);
+
+  /* Barre du haut */
+  --topbar-bg: rgba(16, 24, 40, 0.8);
+  --search-border-color: rgba(255, 255, 255, 0.14);
+  --search-icon-color: #8d97ab;
+  --input-focus-border-color: #f7941e;
+
+  /* Accueil et articles */
+  --post-list-text-color: #c3cad8;
+  --btn-paginator-hover-color: rgba(247, 148, 30, 0.12);
+  --toc-highlight: #f7941e;
+  --toc-popup-border-color: rgba(255, 255, 255, 0.14);
+  --tag-hover: rgba(247, 148, 30, 0.18);
+  --tag-border: rgba(255, 255, 255, 0.14);
+  --tb-odd-bg: #0d1422;
+  --tb-even-bg: #101828;
+  --tb-border-color: rgba(255, 255, 255, 0.07);
+  --footnote-target-bg: rgba(247, 148, 30, 0.25);
+  --btn-share-hover-color: #f7941e;
+  --card-bg: rgba(255, 255, 255, 0.035);
+  --card-hover-bg: rgba(255, 255, 255, 0.065);
+  --card-shadow: 0 18px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.07);
+  --search-tag-bg: rgba(255, 255, 255, 0.065);
+  --dash-color: rgba(255, 255, 255, 0.14);
+
+  /* Catégories et archives */
+  --categories-border: rgba(255, 255, 255, 0.07);
+  --categories-hover-bg: rgba(247, 148, 30, 0.12);
+  --categories-icon-hover-color: #f7941e;
+  --timeline-node-bg: #f7941e;
+  --timeline-color: rgba(255, 255, 255, 0.14);
+
+  /* Code */
+  --highlight-bg-color: #0a101c;
+  --language-border-color: rgba(255, 255, 255, 0.07);
+  --inline-code-bg: rgba(255, 255, 255, 0.065);
+  --code-header-muted-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Police du site */
+body,
+h1, h2, h3, h4, h5, h6,
+.post-title, .site-title, #topbar-title,
+.card-title, .post-meta, #sidebar {
+  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .post-title, .card-title {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+/* Blocs de code et tableaux sur le même fond que le site */
+html[data-mode="dark"] .highlight,
+html[data-mode="dark"] .highlight .w,
+html[data-mode="dark"] div[class^="language-"] {
+  background-color: #0a101c;
+}
+
+html[data-mode="dark"] #archives li:nth-child(odd) {
+  background-image: linear-gradient(to left, #101828, #16213a, #16213a, #16213a, #101828);
+}
+
+/* Cartes arrondies, comme sur le site */
+#post-list .card-wrapper .post-preview,
+.categories.card,
+.post-tail-wrapper .card,
+#related-posts .card {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Titre du site en blanc, accent orange au survol */
+#sidebar .site-title a:hover {
+  color: #f7941e;
+}
+
+/* Liens de la barre latérale actifs en orange */
+#sidebar .nav-item.active .nav-link {
+  color: #f7941e;
+}
+
+/* Pastilles de tags arrondies */
+.post-tags .post-tag,
+#tags .tag {
+  border-radius: 100px;
+}
+
+/* Citations et encadrés */
+blockquote {
+  border-left-color: #f7941e;
+}
+
+/* Bandeau de consentement (mesure d'audience) */
+.consent { position: fixed; z-index: 1100; left: 16px; right: 16px; bottom: 16px; max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 16px 20px; background: #0d1422; color: #c3cad8; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 18px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4); font-size: 0.93rem; line-height: 1.5; }
+.consent p { flex: 1 1 320px; margin: 0; }
+.consent__actions { display: flex; gap: 10px; }
+.consent .btn { border-radius: 100px; padding: 6px 20px; color: #f6f3ec; border-color: rgba(255, 255, 255, 0.25); }
+.consent .btn:hover { border-color: #f7941e; color: #f7941e; background: transparent; }
+
+/* Sélection de texte */
+::selection {
+  background: rgba(247, 148, 30, 0.35);
+  color: #f6f3ec;
+}

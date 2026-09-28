@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Créer une infrastructure de phishing gratuitement avec Amazon Web Service et Gophish"
 description: "Cet article décrit comment créer une infrastructure pour une opération de phishing souvent utilisée dans une opération RedTeam ou APT."
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, RED TEAM]
 tags: [phishing, infrastructure, red team, ingénierie sociale, gophish, cybersécurité, sécurité offensive, campagne de phishing, social engineering, simulation d'attaque]
+image: /assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/illustration.jpg
 ---
-![Créer une infrastructure de phishing gratuitement avec Amazon Web Service et Gophish](/assets/images/2020-10-06-Crer-une-infrastructure-de-phishing/illustration.jpg)
 
 Il est très simple de déployer une infrastructure de phishing grâce aux services d’Amazon Web Service ainsi qu’au framework [Gophish](https://getgophish.com/). Ce framework opensource est dédié à la création de campagnes de phishing et permet un suivi très précis.
 La création d'une campagne de phishing se décline en 3 étapes :

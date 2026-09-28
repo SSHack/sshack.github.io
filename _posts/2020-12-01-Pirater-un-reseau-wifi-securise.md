@@ -3,11 +3,10 @@ published: true
 layout: post
 title: "Pirater un réseau wifi sécurisé"
 description: "Cet article décrit comment pirater un réseau wifi qui est sécurisé. Les méthodes pour protéger son réseau wifi d'un hacker sont également abordées."
-lang: fr_FR
 categories: [CYBERSÉCURITÉ, WIRELESS SECURITY]
 tags: [wifi hacking, aircrack-ng, wpa2, kali linux, handshake, sécurité sans fil, brute force, cracking, evil twin, wps, ingénierie sociale, test d'intrusion]
+image: /assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/illustration.jpg
 ---
-![Pirater un réseau wifi sécurisé](/assets/images/2020-12-01-Pirater-un-reseau-wifi-securise/illustration.jpg)
 
 Cet article détaillera les méthodes et les outils nécessaires afin de tenter de **compromettre la sécurité d'un réseau wifi**. Quatre types d'attaques seront détaillées :
 1. Pirater un réseau wifi sécurisé par une clé WPA/WPA2 via une attaque par force brute (bruteforce)
@@ -279,7 +278,7 @@ EAPOL HMAC     : 24 48 10 9A 24 48 24 48 48 24 48 48 24 48 48 24
 Le mot de passe est alors cracké en quelques secondes/minutes selon le cas, ici : `jetaime`
 
 ### 2.2 - Comment trouver des points d'accès sécurisés par une clé WEP
-Un pirate pourrait avoir envie de rechercher les réseaux wifi vulnérables autour de lui, c'est possible grâce à Wigle qui référence tous les réseaux wifi dans le monde. J'en avais déjà parlé dans mon article sur la <a href="https://clement-bouder.fr/osint,geolocalisation,powershell/2020/11/18/Comment-geolocaliser-un-pc-grace-a-powershell.html" target="https://clement-bouder.fr/osint,geolocalisation,powershell/2020/11/18/Comment-geolocaliser-un-pc-grace-a-powershell.html">géolocalisation d'un PC via PowerShell.</a>
+Un pirate pourrait avoir envie de rechercher les réseaux wifi vulnérables autour de lui, c'est possible grâce à Wigle qui référence tous les réseaux wifi dans le monde. J'en avais déjà parlé dans mon article sur la [géolocalisation d'un PC via PowerShell](/posts/Geolocaliser-un-pc-grace-a-powershell/).
 La création d'un compte gratuit est nécessaire pour avoir accès à la [page de recherche avancée](https://wigle.net/search).
 Il est alors possible de filtrer par ville, protocole de sécurité et par date de dernier référencement. Cette fonctionnalité est intéressante pour s'assurer de la fraîcheur des données et être certain que le réseau est toujours fonctionnel. Ici, une recherche est effectuée avec les critères suivants :
 - Ville de Paris
