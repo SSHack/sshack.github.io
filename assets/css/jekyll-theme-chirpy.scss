@@ -149,13 +149,6 @@ blockquote {
   border-left-color: #f7941e;
 }
 
-/* Bandeau de consentement (mesure d'audience) */
-.consent { position: fixed; z-index: 1100; left: 16px; right: 16px; bottom: 16px; max-width: 720px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 16px 20px; background: #0d1422; color: #c3cad8; border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 18px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4); font-size: 0.93rem; line-height: 1.5; }
-.consent p { flex: 1 1 320px; margin: 0; }
-.consent__actions { display: flex; gap: 10px; }
-.consent .btn { border-radius: 100px; padding: 6px 20px; color: #f6f3ec; border-color: rgba(255, 255, 255, 0.25); }
-.consent .btn:hover { border-color: #f7941e; color: #f7941e; background: transparent; }
-
 /* ==========================================================================
    Mise en page : colonne principale plus large (cartes d'articles, articles)
    ========================================================================== */

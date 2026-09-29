@@ -68,7 +68,7 @@ webmaster_verifications:
 # Web Analytics Settings
 analytics:
   google:
-    id: # chargé par assets/js/consent.js après consentement (bandeau CNIL)
+    id: # chargé par assets/js/consent.js sur toutes les pages (sans bandeau)
   goatcounter:
     id: # fill in your GoatCounter ID
   umami:
