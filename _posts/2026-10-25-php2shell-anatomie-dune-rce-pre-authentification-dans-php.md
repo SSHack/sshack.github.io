@@ -65,7 +65,7 @@ foreach (['session.upload_progress.enabled', 'memory_limit', 'fatal_error_backtr
 
 Une version corrigée est la seule réponse complète. Si la mise à jour doit attendre, les réglages de la section [Comment se protéger](#comment-se-protéger-de-php2shell-) réduisent le risque.
 
-> **Un parc PHP hétérogène, des serveurs que plus personne ne maintient ?** SSHack inventorie les versions exposées et valide vos correctifs en laboratoire avant leur déploiement. [Parlons-en](mailto:contact@sshack.me?subject=php2shell).
+> **Un parc PHP hétérogène, des serveurs que plus personne ne maintient ?** SSHack inventorie les versions exposées et valide vos correctifs en laboratoire avant leur déploiement. [Parlons-en](https://sshack.me/#contact).
 {: .prompt-tip }
 
 ## Chronologie
@@ -377,7 +377,7 @@ php2shell montre qu'une fonction oubliée peut suffire à exposer tout un parc. 
 
 En attendant la mise à jour, quelques lignes de configuration bloquent l'exploit public, sans protéger complètement. Le plus difficile est de savoir où tournent toutes vos versions de PHP, y compris celles que plus personne ne surveille.
 
-**Vous voulez savoir si vos serveurs sont exposés à php2shell, ou valider un correctif avant de le déployer ?** [SSHack](https://sshack.me/) mène ce type d'analyse de bout en bout : identification des versions exposées, reproduction en laboratoire et plan de remédiation priorisé. L'équipe réunit quatre experts issus du Ministère des Armées, dont des pentesteurs Red Team certifiés OSCP et OSEP, et pratique elle-même la recherche de vulnérabilités, comme avec la [CVE-2021-28674 découverte dans SolarWinds Orion](/posts/Orion-SolarWinds-ma-premiere-cve-2021-28674/). Écrivez-nous à [contact@sshack.me](mailto:contact@sshack.me?subject=php2shell).
+**Vous voulez savoir si vos serveurs sont exposés à php2shell, ou valider un correctif avant de le déployer ?** [SSHack](https://sshack.me/) mène ce type d'analyse de bout en bout : identification des versions exposées, reproduction en laboratoire et plan de remédiation priorisé. L'équipe réunit quatre experts issus du Ministère des Armées, dont des pentesteurs Red Team certifiés OSCP et OSEP, et pratique elle-même la recherche de vulnérabilités, comme avec la [CVE-2021-28674 découverte dans SolarWinds Orion](/posts/Orion-SolarWinds-ma-premiere-cve-2021-28674/). [Contactez-nous via notre formulaire](https://sshack.me/#contact).
 
 ## Références
 
