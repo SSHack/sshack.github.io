@@ -1,14 +1,17 @@
 ---
-title: "php2shell (CVE-2026-109618 / CVE-2026-109619) : anatomie d'une RCE pré-authentification dans le cœur de PHP"
-description: "Comment une fonction activée par défaut dans PHP permet d'obtenir un shell avec quelques requêtes POST : mécanisme de la vulnérabilité, chaîne d'exploitation, démonstration en laboratoire, détection et correction."
+title: "php2shell : la RCE pré-authentification qui touche PHP (CVE-2026-109618/109619)"
+description: "php2shell (CVE-2026-109618/109619) : RCE pré-auth dans PHP. Versions touchées, correctifs 8.2.35 à 8.5.12, atténuations, détection et démo en labo."
 date: 2026-10-25 10:00:00 +0200
-last_modified_at: 2026-10-25 20:05:00 +0200
+last_modified_at: 2026-10-25 20:30:00 +0100
 categories: [Cybersécurité, Vulnerability Research]
 tags: [php, php2shell, cve-2026-109618, cve-2026-109619, use-after-free, rce, mod_php, php-fpm, exploitation, aslr, détection]
 image:
-  path: /assets/images/2026-10-25-php2shell/banner.svg
+  path: /assets/images/2026-10-25-php2shell/banner.png
   alt: "php2shell : exécution de commande pré-authentification dans PHP"
 ---
+
+> **Mis à jour le 25/10/2026** : le mécanisme des deux CVE, le correctif officiel et les atténuations ont été alignés sur les avis de sécurité publiés par le projet PHP. Nous avons aussi précisé ce que prouve notre test en laboratoire, et ajouté une chronologie ainsi qu'une méthode pour vérifier l'exposition d'un serveur.
+{: .prompt-info }
 
 Un fichier `index.php` qui affiche « Hello world ». Aucun formulaire, aucune authentification, aucune ligne de code vulnérable. Et pourtant, depuis le 20 octobre 2026, quelques requêtes `POST multipart/form-data` contenant un champ bien choisi suffisent à obtenir un shell sur le serveur qui l'héberge.
 
@@ -16,7 +19,7 @@ Cette vulnérabilité s'appelle **php2shell**. Elle ne se trouve pas dans votre 
 
 ## Qu'est-ce que php2shell ?
 
-**php2shell désigne deux vulnérabilités du cœur de PHP, CVE-2026-109618 et CVE-2026-109619, notées CVSS v4.0 9.2 (critique).** Elles permettent à un attaquant non authentifié d'exécuter des commandes sur le serveur au moyen de requêtes `POST multipart/form-data`. Sous Apache mod_php, tout se joue avant l'exécution du moindre code applicatif, et l'advisory officielle confirme l'exécution de code avec les limites par défaut de PHP. Les détails ont fuité le 20/10/2026, avant la divulgation coordonnée, et une preuve de concept publique a suivi. Les advisories et les versions corrigées ont été publiées le 21/10/2026.
+**php2shell désigne deux vulnérabilités du cœur de PHP, CVE-2026-109618 et CVE-2026-109619, notées CVSS v4.0 9.2 (critique).** Elles permettent à un attaquant non authentifié d'exécuter des commandes sur le serveur au moyen de requêtes `POST multipart/form-data`. Sous Apache mod_php, tout se joue avant l'exécution du moindre code applicatif, et l'avis de sécurité officiel (*advisory*) confirme l'exécution de code avec les limites par défaut de PHP. Les détails ont fuité le 20/10/2026, avant la divulgation coordonnée, et une preuve de concept publique a suivi. Les advisories et les versions corrigées ont été publiées le 21/10/2026.
 
 ## L'essentiel en cinq points
 
@@ -37,9 +40,47 @@ Cette vulnérabilité s'appelle **php2shell**. Elle ne se trouve pas dans votre 
 | PHP 8.1, 8.0 et 7.x | Fin de vie (EOL) | Toutes | Pas de version corrigée (atténuations ci-dessous) |
 | PHP 5.x | Fin de vie (EOL) | 5.4.0 et suivantes | Pas de version corrigée |
 
+## Votre serveur est-il exposé ?
+
+Quatre valeurs suffisent pour une première évaluation. Lisez-les dans la configuration du serveur web, pas en ligne de commande : la CLI de PHP charge souvent un autre `php.ini` que mod_php ou PHP-FPM.
+
+1. **La version de PHP.** En dessous de 8.2.35, 8.3.36, 8.4.27 ou 8.5.12, le serveur est vulnérable. Les branches en fin de vie le sont toutes.
+2. **Le SAPI.** `apache2handler` désigne mod_php, le cas le plus exposé ; `fpm-fcgi` désigne PHP-FPM.
+3. **`session.upload_progress.enabled`.** À `1`, le scénario utilisé par l'exploit public est disponible.
+4. **`memory_limit`.** Une valeur finie permet à l'attaquant de provoquer le dépassement mémoire de CVE-2026-109618. Sur PHP 8.5, regardez aussi `fatal_error_backtraces`.
+
+Le plus simple est de déposer temporairement ce script sur le serveur, d'en restreindre l'accès, puis de le supprimer :
+
+```php
+<?php
+// Vérification php2shell : à supprimer après usage
+header('Content-Type: text/plain');
+echo 'PHP_VERSION  ', PHP_VERSION, "\n";
+echo 'PHP_SAPI     ', PHP_SAPI, "\n";
+foreach (['session.upload_progress.enabled', 'memory_limit', 'fatal_error_backtraces', 'max_multipart_body_parts'] as $directive) {
+    // false : directive absente de cette version de PHP
+    printf("%-32s %s\n", $directive, var_export(ini_get($directive), true));
+}
+```
+
+Une version corrigée est la seule réponse complète. Si la mise à jour doit attendre, les réglages de la section [Comment se protéger](#comment-se-protéger-de-php2shell-) réduisent le risque.
+
+> **Un parc PHP hétérogène, des serveurs que plus personne ne maintient ?** SSHack inventorie les versions exposées et valide vos correctifs en laboratoire avant leur déploiement. [Parlons-en](mailto:contact@sshack.me?subject=php2shell).
+{: .prompt-tip }
+
+## Chronologie
+
+| Date | Événement |
+|---|---|
+| 18/10/2026 | Correctif minimal pour les versions en fin de vie (commit 712e60f), sur une branche dédiée à PHP 7.4 |
+| 19/10/2026 | Versions corrigées 8.2.35, 8.3.36, 8.4.27 et 8.5.12 étiquetées dans le dépôt php-src, avant la divulgation |
+| 20/10/2026 | Fuite des détails techniques, avant la divulgation coordonnée |
+| 21/10/2026 | Publication des avis GHSA-w8hw-w9fx-j79w et GHSA-6wmf-4rv5-p3rp et diffusion des versions corrigées ; le dépôt de preuve de concept public est créé le même jour |
+| 25/10/2026 | Publication de cet article |
+
 ## Deux CVE distinctes
 
-php2shell regroupe deux vulnérabilités distinctes, décrites chacune par un avis de sécurité GitHub du projet PHP.
+php2shell regroupe deux vulnérabilités distinctes, décrites chacune par un avis de sécurité GitHub du projet PHP. Elles ont été signalées par les chercheurs [sagitzadik-wiz](https://github.com/sagitzadik-wiz), [tomash-areion](https://github.com/tomash-areion), [lcfr-hax](https://github.com/lcfr-hax) et [amyb-oai](https://github.com/amyb-oai). Le correctif est l'œuvre d'Arnaud Le Blanc, Ilija Tovilo, Jakub Zelenka et Nora Dossche, de l'équipe PHP.
 
 | CVE | Advisory | Mécanisme | Rôle dans l'exploit public |
 |---|---|---|---|
@@ -53,7 +94,7 @@ php2shell regroupe deux vulnérabilités distinctes, décrites chacune par un av
 
 ### Une fonction pensée pour les barres de progression
 
-Depuis PHP 5.4, PHP sait suivre l'avancement d'un téléversement de fichier. Le principe est simple. Le formulaire d'upload ajoute un champ caché `PHP_SESSION_UPLOAD_PROGRESS`. Pendant que le fichier arrive, PHP écrit l'avancement dans la session de l'utilisateur. Une seconde requête, lancée en JavaScript, lit cette session et affiche une barre de progression.
+Depuis PHP 5.4, PHP sait suivre l'avancement d'un téléversement de fichier. Le principe est simple. Le formulaire de téléversement ajoute un champ caché `PHP_SESSION_UPLOAD_PROGRESS`. Pendant que le fichier arrive, PHP écrit l'avancement dans la session de l'utilisateur. Une seconde requête, lancée en JavaScript, lit cette session et affiche une barre de progression.
 
 Pour que cela fonctionne, PHP doit mettre à jour la session **pendant** la réception du corps de la requête, donc **avant** que le script cible ne commence à s'exécuter, et même avant l'initialisation normale de la requête. C'est le rôle de la fonction de rappel `php_session_rfc1867_callback` (`ext/session/session.c`), que l'analyseur multipart (`main/rfc1867.c`) appelle au fil de la lecture du corps.
 
@@ -163,7 +204,7 @@ printf 'session.upload_progress.enabled = Off\nmax_multipart_body_parts = 1000\n
 apachectl -k graceful
 ```
 
-Ce fichier désactive le suivi de progression, limite le nombre de parties multipart et relève `memory_limit` à 512M. Ce dernier point compte : avec 512M, le champ de 12 Mo du PoC ne suffit plus à provoquer le dépassement mémoire de l'étape 1. Pour la production, nous recommandons `memory_limit = -1` (voir plus bas).
+Ce fichier désactive le suivi de progression, limite le nombre de parties multipart et relève `memory_limit` à 512M. Avec 512M, le champ de 12 Mo du PoC ne suffit plus à provoquer le dépassement mémoire de l'étape 1, ce qui pèse sur l'interprétation du test. Pour la production, nous recommandons `memory_limit = -1` (voir plus bas).
 
 Une sonde qui rejoue uniquement la première étape montre que le cookie de session renvoyé ne contient plus que 32 caractères hexadécimaux ordinaires : plus aucune adresse ne fuite.
 
@@ -217,13 +258,13 @@ $ python3 ./poc_109618.py -u http://127.0.0.1:8088/index.php -c 'id' --proof-fil
 PROOF: uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-Les adresses obtenues sont identiques à celles de la première exploitation. Ce n'est pas un défaut de l'ASLR : les workers Apache sont créés par duplication (`fork`) d'un même processus parent et héritent de sa disposition mémoire. Une adresse obtenue sur un worker reste valable sur les autres, ce qui facilite justement une attaque répartie sur plusieurs requêtes.
+Les adresses obtenues sont identiques à celles de la première exploitation, alors que l'ASLR est bien active. Les workers Apache sont en effet créés par duplication (`fork`) d'un même processus parent et héritent de sa disposition mémoire. Une adresse obtenue sur un worker reste valable sur les autres, ce qui facilite justement une attaque répartie sur plusieurs requêtes.
 
 ## Pourquoi php2shell est si dangereuse
 
 - **La surface d'attaque est très large.** Tout serveur Apache mod_php sous une version vulnérable, qui expose au moins un script PHP, est concerné, quel que soit le CMS ou le framework. FrankenPHP est probablement dans le même cas. Sous PHP-FPM, le risque est réel mais dépend davantage de l'application et de la configuration.
 - **Les protections applicatives sont hors jeu.** Le code vulnérable s'exécute avant l'application : authentification, validation des entrées et journalisation applicative interviennent trop tard.
-- **Les requêtes ressemblent à des uploads légitimes.** Un `POST multipart/form-data` est un trafic banal, ce qui complique le filtrage par WAF.
+- **Les requêtes ressemblent à des téléversements légitimes.** Un `POST multipart/form-data` est un trafic banal, ce qui complique le filtrage par WAF.
 - **L'hébergement mutualisé démultiplie l'impact.** Un shell `www-data` sur un serveur mutualisé peut donner accès aux fichiers de nombreux sites voisins.
 - **Les versions en fin de vie restent répandues.** PHP 7.4, et parfois 5.x, tournent encore en production et ne recevront aucune version corrigée.
 
@@ -235,7 +276,7 @@ Le signal le plus fiable se trouve au niveau des processus : une exploitation r�
 - les interpréteurs (`python`, `perl`) et les outils réseau (`curl`, `wget`, `nc`) ;
 - les commandes de reconnaissance (`id`, `uname`, `whoami`), comme celle de notre démonstration.
 
-Sur les hôtes Linux sans EDR, [process-watcher](https://github.com/Neo23x0/process-watcher) de Florian Roth, en mode observation, détecte ces comportements.
+Sur les hôtes Linux sans EDR, [process-watcher](https://github.com/Neo23x0/process-watcher) de Florian Roth, en mode observation, détecte ces comportements. La même surveillance des processus enfants vaut pour d'autres vecteurs d'exécution, comme les [tâches VSCode lancées à l'ouverture d'un projet](/posts/vscode-comment-pirater-en-un-clic-un-developpeur/) que nous avons analysées.
 
 D'autres indices complètent la détection :
 
@@ -306,7 +347,7 @@ Un résultat nul signale un binaire non corrigé. Un résultat non nul ne prouve
 
 ### 4. Filtrer en amont, en complément
 
-Le dépôt de PoC public fournit des règles ModSecurity, `.htaccess`, Lighttpd et Cloudflare qui bloquent les requêtes multipart portant `PHP_SESSION_UPLOAD_PROGRESS` ou envoyées hors des routes d'upload, ainsi qu'un extrait de Caddyfile qui désactive le suivi de progression sous FrankenPHP. Ces filtres peuvent être contournés : utilisez-les en plus de la mise à jour ou de la configuration, jamais à leur place.
+Le dépôt de PoC public fournit des règles ModSecurity, `.htaccess`, Lighttpd et Cloudflare qui bloquent les requêtes multipart portant `PHP_SESSION_UPLOAD_PROGRESS` ou envoyées hors des routes de téléversement, ainsi qu'un extrait de Caddyfile qui désactive le suivi de progression sous FrankenPHP. Ces filtres peuvent être contournés : utilisez-les en plus de la mise à jour ou de la configuration, jamais à leur place.
 
 ## FAQ
 
@@ -314,13 +355,13 @@ Le dépôt de PoC public fournit des règles ModSecurity, `.htaccess`, Lighttpd 
 
 Oui. La fonction de suivi de progression ouvre elle-même la session, avant l'exécution de votre script et indépendamment de son contenu. Le dépassement mémoire de CVE-2026-109618 ne dépend pas non plus des sessions. Désactiver le suivi de progression réduit l'exposition ; seule une version corrigée de PHP la supprime.
 
-### Un attaquant a-t-il besoin d'un compte ou d'un formulaire d'upload ?
+### Un attaquant a-t-il besoin d'un compte ou d'un formulaire de téléversement ?
 
 Non. Sous mod_php, des requêtes `POST multipart/form-data` vers n'importe quel script PHP accessible suffisent. L'attaquant fournit lui-même le cookie de session et le champ `PHP_SESSION_UPLOAD_PROGRESS`.
 
 ### Désactiver session.upload_progress suffit-il ?
 
-Non. Dans notre laboratoire, un fichier de configuration qui désactive le suivi de progression **et** relève `memory_limit` fait échouer l'exploit public dès sa première étape. Mais l'advisory est claire : ce réglage neutralise le scénario de session, pas CVE-2026-109618 ni les autres chemins de CVE-2026-109619 (avertissements de configuration, traces d'erreur de PHP 8.5). Ajoutez `memory_limit = -1`, `fatal_error_backtraces = Off` sur PHP 8.5, et planifiez la mise à jour.
+Non. Dans notre laboratoire, un fichier de configuration qui désactive le suivi de progression **et** relève `memory_limit` fait échouer l'exploit public dès sa première étape. Ce réglage ne neutralise pourtant que le scénario de session : d'après l'advisory, il ne couvre ni CVE-2026-109618 ni les autres chemins de CVE-2026-109619 (avertissements de configuration, traces d'erreur de PHP 8.5). Ajoutez `memory_limit = -1`, `fatal_error_backtraces = Off` sur PHP 8.5, et planifiez la mise à jour.
 
 ### Quels droits obtient l'attaquant ?
 
@@ -336,7 +377,7 @@ php2shell montre qu'une fonction oubliée peut suffire à exposer tout un parc. 
 
 En attendant la mise à jour, quelques lignes de configuration bloquent l'exploit public, sans protéger complètement. Le plus difficile est de savoir où tournent toutes vos versions de PHP, y compris celles que plus personne ne surveille.
 
-**Vous voulez savoir si vos serveurs sont exposés à php2shell, ou valider un correctif avant de le déployer ?** Chez SSHack, nous menons ce type d'analyse de bout en bout : identification des versions exposées, reproduction en laboratoire et plan de remédiation priorisé. Écrivez-nous à [contact@sshack.me](mailto:contact@sshack.me).
+**Vous voulez savoir si vos serveurs sont exposés à php2shell, ou valider un correctif avant de le déployer ?** [SSHack](https://sshack.me/) mène ce type d'analyse de bout en bout : identification des versions exposées, reproduction en laboratoire et plan de remédiation priorisé. L'équipe réunit quatre experts issus du Ministère des Armées, dont des pentesteurs Red Team certifiés OSCP et OSEP, et pratique elle-même la recherche de vulnérabilités, comme avec la [CVE-2021-28674 découverte dans SolarWinds Orion](/posts/Orion-SolarWinds-ma-premiere-cve-2021-28674/). Écrivez-nous à [contact@sshack.me](mailto:contact@sshack.me?subject=php2shell).
 
 ## Références
 

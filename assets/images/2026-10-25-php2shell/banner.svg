@@ -17,7 +17,7 @@
   <rect width="1200" height="630" fill="url(#grid)"/>
   <rect x="0" y="0" width="8" height="630" fill="url(#green)"/>
   <text x="72" y="104" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="22" fill="#5fd38d" letter-spacing="3">SSHACK // VULNERABILITY RESEARCH</text>
-  <rect x="72" y="128" width="236" height="40" rx="6" fill="#2a0d0d" stroke="#ef5350" stroke-width="1.5"/>
+  <rect x="72" y="128" width="276" height="40" rx="6" fill="#2a0d0d" stroke="#ef5350" stroke-width="1.5"/>
   <circle cx="96" cy="148" r="6" fill="#ef5350"/>
   <text x="112" y="155" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="18" fill="#ff8a80" letter-spacing="1">CVSS 9.2 · CRITIQUE</text>
   <text x="70" y="286" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="96" font-weight="700"><tspan fill="#2ecc71">$ </tspan><tspan fill="#ffffff">php2shell</tspan></text>
@@ -29,6 +29,6 @@
   <circle cx="122" cy="498" r="6" fill="#ffbd2e"/>
   <circle cx="144" cy="498" r="6" fill="#27c93f"/>
   <text x="96" y="548" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="26" fill="#8a8a8a"><tspan fill="#2ecc71">$ </tspan>curl -X POST --data-binary @payload /index.php</text>
-  <text x="1128" y="548" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="24" font-weight="700" fill="#7CFC9A">uid=33(www-data)</text>
+  <text x="1104" y="548" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="24" font-weight="700" fill="#7CFC9A">uid=33(www-data)</text>
   <text x="1128" y="104" text-anchor="end" font-family="'JetBrains Mono','DejaVu Sans Mono',monospace" font-size="22" fill="#4f8f6c">blog.sshack.me</text>
 </svg>

@@ -6,6 +6,7 @@ L'équipe réunit quatre experts issus du Ministère des Armées (Red Team certi
 
 ## Recherche de vulnérabilités
 
+- [php2shell : la RCE pré-authentification qui touche PHP (CVE-2026-109618/109619)](https://blog.sshack.me/posts/php2shell-anatomie-dune-rce-pre-authentification-dans-php/) : analyse des deux vulnérabilités du cœur de PHP (dépassement mémoire et état global réutilisé), versions corrigées, vérification de l'exposition, atténuations, détection et démonstration en laboratoire.
 - [Orion SolarWinds : rupture de cloisonnement dans la gestion des nœuds (CVE-2021-28674)](https://blog.sshack.me/posts/Orion-SolarWinds-ma-premiere-cve-2021-28674/) : contrôle d'accès défaillant dans SolarWinds Orion Platform, découvert par un membre de l'équipe et divulgué de manière coordonnée.
 - [Bug Bounty : de hacker à phisher](https://blog.sshack.me/posts/Bug-Bounty-de-hacker-a-fisher/) : injection de caractères exploitée dans un scénario de phishing (programme YesWeHack).
 - [Récupérer l'adresse IP d'un iPhone en envoyant un SMS piégé](https://blog.sshack.me/posts/Recuperer-adresse-IP-iphone-avec-sms-piege/) : fuite d'adresse IP via l'aperçu des liens dans les SMS.
